@@ -7,14 +7,14 @@ import {
   ArrowDown,
   ArrowRight,
   ArrowUpRight,
-  BowlIcon,
-  ConsultIcon,
+  BookIcon,
   FacebookIcon,
+  GutIcon,
   InstagramIcon,
-  JarIcon,
+  LeafIcon,
   LinkedinIcon,
   MailIcon,
-  MicIcon,
+  MindIcon,
   PhoneIcon,
   Plus,
   Star,
@@ -37,10 +37,6 @@ import {
 
 const d = (delay: string) => ({ '--d': delay }) as CSSProperties;
 
-function Eyebrow({ children, center = false }: { children: React.ReactNode; center?: boolean }) {
-  return <p className={`pk-eyebrow${center ? ' is-center' : ''}`}>{children}</p>;
-}
-
 function Picture({ img, className, eager = false }: { img: Img; className?: string; eager?: boolean }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
@@ -60,25 +56,33 @@ function Picture({ img, className, eager = false }: { img: Img; className?: stri
 function Marquee({
   items,
   render,
-  direction = 'ltr',
+  direction = 'rtl',
   className = '',
 }: {
   items: Img[];
-  render: (img: Img, i: number) => React.ReactNode;
+  render: (img: Img, key: string, decorative: boolean) => React.ReactNode;
   direction?: 'ltr' | 'rtl';
   className?: string;
 }) {
   return (
     <div className={`pk-marquee ${direction} ${className}`}>
       <div className="pk-marquee-track">
-        {items.map((img, i) => render(img, i))}
+        {items.map((img, i) => render(img, `a${i}`, false))}
         <div className="pk-marquee-dup" aria-hidden>
-          {items.map((img, i) => render(img, i + items.length))}
+          {items.map((img, i) => render(img, `b${i}`, true))}
         </div>
       </div>
     </div>
   );
 }
+
+/* Her four credentials, word for word from the bio. */
+const FOCUS = [
+  { Icon: GutIcon, a: 'Certified Gut Health', b: 'Nutritionist' },
+  { Icon: LeafIcon, a: 'Weight Loss', b: 'Specialist' },
+  { Icon: MindIcon, a: 'NLP Master', b: 'Practitioner' },
+  { Icon: BookIcon, a: 'Bestselling Author', b: 'of The Gut' },
+];
 
 const SERVICES = [
   {
@@ -88,7 +92,7 @@ const SERVICES = [
     body: 'A practical, guided approach to better nutrition, bringing together meal guidance, recipes, habit tracking, gut-focused wellness products and WhatsApp support.',
     cta: 'Explore The Programme',
     href: LINKS.programme,
-    Icon: BowlIcon,
+    img: { src: '/images/service-nutrition.webp', w: 853, h: 639, alt: 'Payal Kothari at a live nutrition demo' },
   },
   {
     no: '02',
@@ -98,7 +102,8 @@ const SERVICES = [
     cta: 'Explore GutAvatar',
     href: LINKS.gutavatar,
     external: true,
-    Icon: JarIcon,
+    product: true,
+    img: { src: '/images/service-gutavatar.webp', w: 1200, h: 900, alt: 'GutAvatar Magic Mix, Curcumin Cure Mix and Alkaline Immunity Mix' },
   },
   {
     no: '03',
@@ -107,8 +112,7 @@ const SERVICES = [
     body: 'For those seeking deeper, individualised attention, work personally with Payal on a nutrition approach built around your health history, goals and lifestyle.',
     cta: 'Enquire About Consultations',
     href: LINKS.consultation,
-    featured: true,
-    Icon: ConsultIcon,
+    img: { src: '/images/service-consultation.webp', w: 676, h: 507, alt: 'Payal Kothari with fresh dragon fruit' },
   },
   {
     no: '04',
@@ -117,9 +121,11 @@ const SERVICES = [
     body: "Bring Payal's expertise in gut health, nutrition and the mind-gut connection to your corporate events, leadership forums and wellness workshops through engaging, insightful and practical sessions.",
     cta: 'Invite Payal To Speak',
     href: LINKS.speaking,
-    Icon: MicIcon,
+    img: { src: '/images/service-speaking.webp', w: 1200, h: 900, alt: 'Payal Kothari speaking at a Femina event' },
   },
 ];
+
+const PODCAST_SHOWS = ['The Inspiring Talk', 'The Himanshu Mehta Show', 'Adhiraj Sethi Podcast', 'Glamrs Live'];
 
 const FAQS = [
   {
@@ -168,9 +174,6 @@ const FAQS = [
   },
 ];
 
-const LOGO_ROW_A = PRESS_LOGOS.slice(0, 11);
-const LOGO_ROW_B = PRESS_LOGOS.slice(11);
-
 export default function Home() {
   return (
     <>
@@ -178,145 +181,136 @@ export default function Home() {
       <Header />
 
       <main>
-        {/* ── HERO ─────────────────────────────────────────────────── */}
+        {/* ── HERO · full-bleed portrait fading into ivory ─────────────── */}
         <section id="home" className="pk-hero">
-          <div className="pk-wrap pk-hero-grid">
+          <div className="pk-hero-photo" aria-hidden>
+            <Picture img={{ src: '/images/payal-hero.webp', w: 1102, h: 1444, alt: '' }} eager />
+          </div>
+          <p className="pk-script pk-hero-script" aria-hidden>
+            Science.
+            <br />
+            Compassion.
+            <br />
+            Real Life.
+          </p>
+          <ul className="pk-hero-stack" aria-hidden>
+            <li>People</li>
+            <li>Food</li>
+            <li>Science</li>
+            <li>A Kinder You</li>
+          </ul>
+
+          <div className="pk-wrap pk-hero-inner">
             <div className="pk-hero-copy">
-              <Eyebrow>
-                <span data-reveal style={d('.05s')}>
-                  Gut Health Expert · Weight Loss Specialist · Bestselling Author
-                </span>
-              </Eyebrow>
+              <p className="pk-eyebrow" data-reveal style={d('.05s')}>
+                Gut Health Expert · Weight Loss Specialist · Bestselling Author
+              </p>
               <h1 className="pk-display" data-reveal style={d('.12s')}>
-                <span className="pk-line">The Secret To Better Health</span>
-                <span className="pk-line">
-                  May Be Hiding <em>In Your Gut.</em>
-                </span>
+                The Secret To Better Health
+                <br />
+                May Be Hiding In Your Gut.
               </h1>
-              <p className="pk-lede" data-reveal style={d('.2s')}>
+              <p className="pk-hero-sub" data-reveal style={d('.2s')}>
                 Go beyond diets and quick fixes with a science-backed, gut-first approach to better
                 digestion, sustainable weight loss and lasting health.
               </p>
               <div data-reveal style={d('.28s')}>
-                <a href="#secret" className="pk-btn pk-btn-primary">
-                  Uncover The Secret
-                  <span className="pk-btn-icon">
-                    <ArrowDown size={16} />
-                  </span>
+                <a href="#secret" className="pk-btn">
+                  Uncover The Secret <ArrowDown size={15} />
                 </a>
               </div>
             </div>
-
-            <div className="pk-hero-visual" data-reveal style={d('.18s')}>
-              <div className="pk-arch-back" aria-hidden />
-              <div className="pk-arch">
-                <Picture
-                  img={{ src: '/images/payal-hero.webp', w: 1102, h: 1444, alt: 'Payal Kothari' }}
-                  eager
-                />
-              </div>
-              <span className="pk-ring" aria-hidden />
-              <p className="pk-script pk-hero-script" aria-hidden>
-                Science. <br />
-                Compassion. <br />
-                Real Life.
-              </p>
-            </div>
           </div>
         </section>
 
-        {/* ── THE SECRET ───────────────────────────────────────────── */}
-        <section id="secret" className="pk-section pk-secret">
-          <div className="pk-wrap">
-            <div className="pk-secret-grid">
-              <div className="pk-secret-copy">
-                <Eyebrow>
-                  <span data-reveal>The Secret Most People Overlook</span>
-                </Eyebrow>
-                <h2 className="pk-h2" data-reveal style={d('.06s')}>
-                  <span className="pk-line">All Diseases Begin In The Gut.</span>
-                  <span className="pk-line">
-                    <em>And So Do The Solutions.</em>
-                  </span>
-                </h2>
-                <p className="pk-question" data-reveal style={d('.12s')}>
-                  What if I told you that your gut has a mind of its own?
-                </p>
-                <div className="pk-prose" data-reveal style={d('.18s')}>
-                  <p>
-                    Deep inside your digestive system lives an entire ecosystem of trillions of
-                    microorganisms, working around the clock and interacting with everything from your
-                    metabolism and immunity to your mood and brain.
-                  </p>
-                  <p className="pk-prose-key">
-                    It&rsquo;s why your gut is often called your <em>Second Brain.</em>
-                  </p>
-                  <p>
-                    Yet most of us spend years changing diets, counting calories and chasing symptoms,
-                    without ever paying attention to this extraordinary world within us.
-                  </p>
-                </div>
-              </div>
-
-              <figure className="pk-secret-visual" data-reveal style={d('.1s')}>
-                <span className="pk-disc" aria-hidden />
-                <Picture
-                  img={{
-                    src: '/images/second-brain.webp',
-                    w: 1600,
-                    h: 1200,
-                    alt: 'Illustration of the human digestive system',
-                  }}
-                />
-              </figure>
-            </div>
-
-            <blockquote className="pk-pull" data-reveal>
-              <span className="pk-rule" aria-hidden />
-              <p>
-                Maybe it&rsquo;s time we stopped blaming our bodies and started understanding them.
-                <br />
-                <em>
-                  Because the root of what you&rsquo;re feeling may have been in your gut all along.
-                </em>
-              </p>
-              <a href="#services" className="pk-link">
-                Explore Gut-First Solutions <ArrowRight size={16} />
-              </a>
-            </blockquote>
-          </div>
+        {/* ── FOCUS STRIP ──────────────────────────────────────────────── */}
+        <section className="pk-focus" aria-label="Payal Kothari's credentials">
+          <ul className="pk-wrap pk-focus-row">
+            {FOCUS.map(({ Icon, a, b }, i) => (
+              <li key={a} data-reveal style={d(`${0.04 + i * 0.06}s`)}>
+                <span className="pk-icon-circle">
+                  <Icon size={22} />
+                </span>
+                <span className="pk-focus-text">
+                  {a}
+                  <br />
+                  {b}
+                </span>
+              </li>
+            ))}
+          </ul>
         </section>
 
-        {/* ── MEET PAYAL ───────────────────────────────────────────── */}
-        <section id="about" className="pk-section pk-about pk-tone-sand">
-          <div className="pk-wrap pk-about-grid">
-            <div className="pk-about-visual" data-reveal>
-              <div className="pk-arch pk-arch-sm">
-                <Picture
-                  img={{
-                    src: '/images/payal-the-gut.webp',
-                    w: 904,
-                    h: 1280,
-                    alt: 'Payal Kothari holding her book, The Gut',
-                  }}
-                />
-              </div>
-              <p className="pk-script pk-about-script" aria-hidden>
-                Health starts within
-              </p>
-            </div>
+        {/* ── THE SECRET · image left, text right ──────────────────────── */}
+        <section id="secret" className="pk-section">
+          <div className="pk-wrap pk-split">
+            <figure className="pk-split-media pk-panel-sand" data-reveal>
+              <Picture
+                img={{ src: '/images/second-brain.webp', w: 1600, h: 1200, alt: 'Illustration of the human digestive system' }}
+              />
+            </figure>
 
-            <div className="pk-about-copy">
-              <Eyebrow>
-                <span data-reveal>The Woman Behind &ldquo;The Gut&rdquo;</span>
-              </Eyebrow>
+            <div className="pk-split-copy">
+              <p className="pk-eyebrow" data-reveal>
+                The Secret Most People Overlook
+              </p>
               <h2 className="pk-h2" data-reveal style={d('.06s')}>
-                Meet <em>Payal Kothari</em>
+                All Diseases Begin In The Gut.
+                <br />
+                And So Do The Solutions.
               </h2>
-              <p className="pk-quote" data-reveal style={d('.12s')}>
+              <p className="pk-question" data-reveal style={d('.12s')}>
+                What if I told you that your gut has a mind of its own?
+              </p>
+              <div className="pk-body" data-reveal style={d('.18s')}>
+                <p>
+                  Deep inside your digestive system lives an entire ecosystem of trillions of
+                  microorganisms, working around the clock and interacting with everything from your
+                  metabolism and immunity to your mood and brain.
+                </p>
+                <p>
+                  It&rsquo;s why your gut is often called your <em>Second Brain.</em>
+                </p>
+                <p>
+                  Yet most of us spend years changing diets, counting calories and chasing symptoms,
+                  without ever paying attention to this extraordinary world within us.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* ── QUOTE BAND · sand, leaf shadow, divided ──────────────────── */}
+        <section className="pk-quote-band">
+          <div className="pk-quote-leaf" aria-hidden />
+          <div className="pk-wrap pk-quote-grid" data-reveal>
+            <p className="pk-quote-lead">
+              Maybe it&rsquo;s time we stopped blaming our bodies and started understanding them.
+            </p>
+            <span className="pk-quote-rule" aria-hidden />
+            <div className="pk-quote-side">
+              <p>Because the root of what you&rsquo;re feeling may have been in your gut all along.</p>
+              <a href="#services" className="pk-arrow-link">
+                Explore Gut-First Solutions <ArrowRight size={15} />
+              </a>
+            </div>
+          </div>
+        </section>
+
+        {/* ── MEET PAYAL · text left, image right ──────────────────────── */}
+        <section id="about" className="pk-section">
+          <div className="pk-wrap pk-split pk-split-rev">
+            <div className="pk-split-copy">
+              <p className="pk-eyebrow" data-reveal>
+                The Woman Behind &ldquo;The Gut&rdquo;
+              </p>
+              <h2 className="pk-h2" data-reveal style={d('.06s')}>
+                Meet Payal Kothari
+              </h2>
+              <p className="pk-question" data-reveal style={d('.12s')}>
                 &ldquo;What Once Made Me Struggle With My Health Eventually Gave Me My Purpose.&rdquo;
               </p>
-              <div className="pk-prose" data-reveal style={d('.18s')}>
+              <div className="pk-body" data-reveal style={d('.18s')}>
                 <p>
                   A Certified Gut Health Nutritionist, Weight Loss Specialist, NLP Master Practitioner,
                   bestselling author of <em>The Gut</em> and Founder of GutAvatar, Payal Kothari has spent
@@ -334,156 +328,147 @@ export default function Home() {
                 </p>
               </div>
               <div data-reveal style={d('.24s')}>
-                <a href={LINKS.story} className="pk-btn pk-btn-ghost">
-                  Read My Story
-                  <span className="pk-btn-icon">
-                    <ArrowRight size={16} />
-                  </span>
+                <a href={LINKS.story} className="pk-btn pk-btn-outline">
+                  Read My Story <ArrowRight size={15} />
                 </a>
               </div>
             </div>
+
+            <figure className="pk-split-media pk-split-portrait" data-reveal style={d('.08s')}>
+              <Picture
+                img={{ src: '/images/payal-the-gut.webp', w: 904, h: 1280, alt: 'Payal Kothari holding her book, The Gut' }}
+              />
+              <p className="pk-script pk-portrait-script" aria-hidden>
+                Health starts within
+              </p>
+            </figure>
           </div>
 
-          <div className="pk-press-strip" data-reveal>
-            <Eyebrow center>Media Features</Eyebrow>
+          <div className="pk-media" data-reveal>
+            <p className="pk-eyebrow is-center">Media Features</p>
             <Marquee
               items={MEDIA_FEATURES}
               className="pk-marquee-slow"
-              render={(img, i) => (
-                <figure className="pk-clip" key={i}>
-                  <Picture img={i < MEDIA_FEATURES.length ? img : { ...img, alt: '' }} />
+              render={(img, key, dec) => (
+                <figure className="pk-clip" key={key}>
+                  <Picture img={dec ? { ...img, alt: '' } : img} />
                 </figure>
               )}
             />
           </div>
         </section>
 
-        {/* ── FEATURED IN ──────────────────────────────────────────── */}
-        <section className="pk-section pk-featured">
+        {/* ── FEATURED IN ──────────────────────────────────────────────── */}
+        <section className="pk-section pk-tint">
           <div className="pk-wrap">
             <h2 className="pk-h2 is-center" data-reveal>
-              Featured In <em>Leading Publications</em>
+              Featured In Leading Publications
             </h2>
-          </div>
-          <div className="pk-logo-rows" data-reveal style={d('.1s')}>
-            {[LOGO_ROW_A, LOGO_ROW_B].map((row, r) => (
-              <Marquee
-                key={r}
-                items={row}
-                direction={r === 0 ? 'ltr' : 'rtl'}
-                render={(img, i) => (
-                  <span className="pk-logo" key={i}>
-                    <Picture img={i < row.length ? img : { ...img, alt: '' }} />
-                  </span>
-                )}
-              />
-            ))}
-          </div>
-        </section>
-
-        {/* ── TRUSTED BY ───────────────────────────────────────────── */}
-        <section className="pk-section pk-trusted pk-tone-olive">
-          <div className="pk-wrap">
-            <h2 className="pk-h2 is-center" data-reveal>
-              Trusted By Some Of The <em>Most Recognisable Names.</em>
-            </h2>
-            <ul className="pk-trusted-grid">
-              {TRUSTED.map((t, i) => (
-                <li key={t.src} className="pk-trusted-card" data-reveal style={d(`${0.05 + i * 0.06}s`)}>
-                  <div className="pk-trusted-photo">
-                    <Picture img={t} />
-                  </div>
-                  {t.name ? <p className="pk-trusted-name">{t.name}</p> : null}
+            <ul className="pk-logos" data-reveal style={d('.08s')}>
+              {PRESS_LOGOS.map((l) => (
+                <li key={l.src}>
+                  <Picture img={l} />
                 </li>
               ))}
             </ul>
           </div>
         </section>
 
-        {/* ── SERVICES ─────────────────────────────────────────────── */}
-        <section id="services" className="pk-section pk-services">
+        {/* ── TRUSTED BY ───────────────────────────────────────────────── */}
+        <section className="pk-section">
           <div className="pk-wrap">
-            <div className="pk-masthead">
-              <Eyebrow center>
-                <span data-reveal>Our Services</span>
-              </Eyebrow>
+            <h2 className="pk-h2 is-center" data-reveal>
+              Trusted By Some Of The Most Recognisable Names.
+            </h2>
+            <ul className="pk-people">
+              {TRUSTED.map((t, i) => (
+                <li key={t.src} className="pk-card" data-reveal style={d(`${0.04 + i * 0.05}s`)}>
+                  <div className="pk-card-img pk-card-img-portrait">
+                    <Picture img={t} />
+                  </div>
+                  {t.name ? <p className="pk-card-title">{t.name}</p> : null}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        {/* ── SERVICES · photo-top cards ───────────────────────────────── */}
+        <section id="services" className="pk-section pk-tint">
+          <div className="pk-wrap">
+            <div className="pk-head">
+              <p className="pk-eyebrow is-center" data-reveal>
+                Our Services
+              </p>
               <h2 className="pk-h2 is-center" data-reveal style={d('.06s')}>
-                Your Journey To Better Health <em>Starts Here.</em>
+                Your Journey To Better Health Starts Here.
               </h2>
-              <p className="pk-deck" data-reveal style={d('.12s')}>
+              <p className="pk-lead" data-reveal style={d('.12s')}>
                 Whether you want to improve your gut, lose stubborn weight or take charge of your health,
                 find the support that works for you.
               </p>
             </div>
 
-            <div className="pk-service-grid">
-              {SERVICES.map(({ Icon, ...s }, i) => (
-                <article
-                  key={s.no}
-                  className={`pk-service${s.featured ? ' is-featured' : ''}`}
-                  data-reveal
-                  style={d(`${0.05 + i * 0.08}s`)}
-                >
-                  <div className="pk-service-head">
-                    <span className="pk-service-no">{s.no}</span>
-                    <span className="pk-service-kicker">/ {s.kicker}</span>
-                    <span className="pk-icon-circle">
-                      <Icon size={26} />
-                    </span>
+            <div className="pk-services">
+              {SERVICES.map((s, i) => (
+                <article key={s.no} className="pk-card pk-service" data-reveal style={d(`${0.04 + i * 0.07}s`)}>
+                  <div className={`pk-card-img${s.product ? ' is-product' : ''}`}>
+                    <Picture img={s.img} />
                   </div>
-                  <h3 className="pk-service-title">{s.title}</h3>
-                  <p className="pk-service-body">{s.body}</p>
-                  <a
-                    href={s.href}
-                    className="pk-link"
-                    {...(s.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-                  >
-                    {s.cta}
-                    {s.external ? <ArrowUpRight size={16} /> : <ArrowRight size={16} />}
-                  </a>
+                  <div className="pk-card-body">
+                    <p className="pk-card-meta">
+                      {s.no} / {s.kicker}
+                    </p>
+                    <h3 className="pk-card-title">{s.title}</h3>
+                    <p className="pk-card-text">{s.body}</p>
+                    <a
+                      href={s.href}
+                      className="pk-arrow-link"
+                      {...(s.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+                    >
+                      {s.cta} {s.external ? <ArrowUpRight size={15} /> : <ArrowRight size={15} />}
+                    </a>
+                  </div>
                 </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── RESULTS ──────────────────────────────────────────────── */}
-        <section className="pk-section pk-results pk-tone-sand">
-          <div className="pk-wrap pk-masthead">
-            <Eyebrow center>
-              <span data-reveal>Different Approach. Visible Results.</span>
-            </Eyebrow>
+        {/* ── RESULTS ──────────────────────────────────────────────────── */}
+        <section className="pk-section">
+          <div className="pk-wrap pk-head">
+            <p className="pk-eyebrow is-center" data-reveal>
+              Different Approach. Visible Results.
+            </p>
             <h2 className="pk-h2 is-center" data-reveal style={d('.06s')}>
-              <span className="pk-line">What Years Of Dieting Couldn&rsquo;t Achieve,</span>
-              <span className="pk-line">
-                <em>A Gut-First Approach Made Possible.</em>
-              </span>
+              What Years Of Dieting Couldn&rsquo;t Achieve,
+              <br />
+              A Gut-First Approach Made Possible.
             </h2>
           </div>
-          <div data-reveal style={d('.12s')}>
+          <div data-reveal style={d('.1s')}>
             <Marquee
               items={RESULTS}
               direction="ltr"
-              className="pk-marquee-results"
-              render={(img, i) => (
-                <figure className="pk-result" key={i}>
-                  <Picture img={i < RESULTS.length ? img : { ...img, alt: '' }} />
+              render={(img, key, dec) => (
+                <figure className="pk-result" key={key}>
+                  <Picture img={dec ? { ...img, alt: '' } : img} />
                 </figure>
               )}
             />
           </div>
           <div className="pk-wrap pk-center" data-reveal>
-            <a href={LINKS.successStories} className="pk-link" target="_blank" rel="noopener noreferrer">
-              See More Success Stories <ArrowRight size={16} />
+            <a href={LINKS.successStories} className="pk-arrow-link" target="_blank" rel="noopener noreferrer">
+              See More Success Stories <ArrowRight size={15} />
             </a>
           </div>
         </section>
 
-        {/* ── THE BOOK ─────────────────────────────────────────────── */}
-        <section className="pk-section pk-book">
-          <div className="pk-wrap pk-book-grid">
-            <figure className="pk-book-visual" data-reveal>
-              <span className="pk-disc pk-disc-lg" aria-hidden />
+        {/* ── THE BOOK · image left, text right ────────────────────────── */}
+        <section className="pk-section pk-tint">
+          <div className="pk-wrap pk-split">
+            <figure className="pk-split-media pk-panel-sand pk-book-media" data-reveal>
               <Picture
                 img={{
                   src: '/images/the-gut-book.webp',
@@ -494,34 +479,24 @@ export default function Home() {
               />
             </figure>
 
-            <div className="pk-book-copy">
-              <Eyebrow>
-                <span data-reveal>The Bestselling Book By Payal Kothari</span>
-              </Eyebrow>
-              <h2 className="pk-h2" data-reveal style={d('.06s')}>
-                <span className="pk-line">Your Gut Has A Story To Tell.</span>
-                <span className="pk-line">
-                  <em>This Book Helps You Understand It.</em>
-                </span>
-              </h2>
-              <p className="pk-rating" data-reveal style={d('.12s')}>
-                <span className="pk-stars" aria-hidden>
-                  <span className="pk-stars-base">
-                    {Array.from({ length: 5 }, (_, i) => (
-                      <Star key={i} size={16} />
-                    ))}
-                  </span>
-                  <span className="pk-stars-fill" style={{ width: '88%' }}>
-                    {Array.from({ length: 5 }, (_, i) => (
-                      <Star key={i} size={16} />
-                    ))}
-                  </span>
-                </span>
-                <span>
-                  <b>4.4/5</b> on Amazon
-                </span>
+            <div className="pk-split-copy">
+              <p className="pk-eyebrow" data-reveal>
+                The Bestselling Book By Payal Kothari
               </p>
-              <div className="pk-prose" data-reveal style={d('.18s')}>
+              <h2 className="pk-h2" data-reveal style={d('.06s')}>
+                Your Gut Has A Story To Tell.
+                <br />
+                This Book Helps You Understand It.
+              </h2>
+              <p className="pk-rating" data-reveal style={d('.1s')}>
+                <span className="pk-stars" aria-hidden>
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <Star key={i} size={15} />
+                  ))}
+                </span>
+                4.4/5 on Amazon
+              </p>
+              <div className="pk-body" data-reveal style={d('.16s')}>
                 <p>
                   In <em>The Gut: Story of Our Incredible Second Brain</em>, Payal Kothari takes you inside
                   the fascinating world of your gut, revealing its connections with weight, immunity,
@@ -533,13 +508,13 @@ export default function Home() {
                   about food and your body.
                 </p>
               </div>
-              <div className="pk-stores" data-reveal style={d('.24s')}>
-                <span className="pk-stores-label">Available On:</span>
+              <div className="pk-stores" data-reveal style={d('.22s')}>
+                <span className="pk-card-meta">Available On:</span>
                 <ul>
                   {BOOK_STORES.map((s) => (
                     <li key={s.name}>
-                      <a href={s.href} target="_blank" rel="noopener noreferrer" className="pk-store">
-                        {s.name} <ArrowUpRight size={14} />
+                      <a href={s.href} target="_blank" rel="noopener noreferrer" className="pk-btn pk-btn-outline pk-btn-sm">
+                        {s.name} <ArrowUpRight size={13} />
                       </a>
                     </li>
                   ))}
@@ -549,85 +524,87 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── PODCASTS ─────────────────────────────────────────────── */}
-        <section className="pk-section pk-podcasts pk-tone-cacao">
+        {/* ── PODCASTS · journal-style cards ───────────────────────────── */}
+        <section className="pk-section">
           <div className="pk-wrap">
-            <div className="pk-masthead">
-              <Eyebrow center>
-                <span data-reveal>Podcast Appearances</span>
-              </Eyebrow>
-              <h2 className="pk-h2 is-center" data-reveal style={d('.06s')}>
-                Payal <em>In Conversation</em>
-              </h2>
+            <div className="pk-row-head">
+              <div>
+                <p className="pk-eyebrow" data-reveal>
+                  Podcast Appearances
+                </p>
+                <h2 className="pk-h2" data-reveal style={d('.06s')}>
+                  Payal In Conversation
+                </h2>
+              </div>
             </div>
-            <div className="pk-podcast-grid">
+            <div className="pk-podcasts">
               {PODCASTS.map((p, i) => (
-                <div key={p.id} data-reveal style={d(`${0.05 + i * 0.07}s`)}>
+                <article key={p.id} className="pk-card" data-reveal style={d(`${0.04 + i * 0.06}s`)}>
                   <YouTubeLite id={p.id} title={p.title} />
-                </div>
+                  <div className="pk-card-body">
+                    <h3 className="pk-card-title pk-card-title-sm">{p.title}</h3>
+                    <p className="pk-card-meta">{PODCAST_SHOWS[i]}</p>
+                  </div>
+                </article>
               ))}
             </div>
           </div>
         </section>
 
-        {/* ── WATCH & LEARN ────────────────────────────────────────── */}
-        <section className="pk-section pk-watch">
-          <div className="pk-wrap pk-watch-grid">
-            <div className="pk-watch-copy">
-              <Eyebrow>
-                <span data-reveal>Watch &amp; Learn With Payal</span>
-              </Eyebrow>
+        {/* ── WATCH & LEARN · the olive band ───────────────────────────── */}
+        <section className="pk-olive">
+          <div className="pk-wrap pk-olive-grid">
+            <div className="pk-olive-copy">
+              <p className="pk-eyebrow" data-reveal>
+                Watch &amp; Learn With Payal
+              </p>
               <h2 className="pk-h2" data-reveal style={d('.06s')}>
-                Gut Health, <em>Made Simple.</em>
+                Gut Health, Made Simple.
               </h2>
-              <p className="pk-deck is-left" data-reveal style={d('.12s')}>
+              <p className="pk-olive-text" data-reveal style={d('.12s')}>
                 Explore Payal&rsquo;s YouTube channel for practical insights on gut health, weight loss,
                 nutrition and everyday wellness.
               </p>
-              <div data-reveal style={d('.18s')}>
-                <a href={SOCIAL.youtube} target="_blank" rel="noopener noreferrer" className="pk-btn pk-btn-primary">
-                  Watch On Youtube
-                  <span className="pk-btn-icon">
-                    <ArrowRight size={16} />
-                  </span>
+              <div className="pk-olive-actions" data-reveal style={d('.18s')}>
+                <a href={SOCIAL.youtube} target="_blank" rel="noopener noreferrer" className="pk-btn">
+                  Watch On Youtube <ArrowRight size={15} />
                 </a>
+                <p className="pk-also">
+                  Content also available on:{' '}
+                  <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer">
+                    Instagram
+                  </a>
+                  ,{' '}
+                  <a href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer">
+                    Facebook
+                  </a>
+                </p>
               </div>
-              <p className="pk-also" data-reveal style={d('.24s')}>
-                Content also available on:{' '}
-                <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer">
-                  Instagram
-                </a>
-                ,{' '}
-                <a href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer">
-                  Facebook
-                </a>
-              </p>
             </div>
-            <div className="pk-watch-video" data-reveal style={d('.1s')}>
+            <div className="pk-olive-video" data-reveal style={d('.1s')}>
               <YouTubeLite id={FEATURED_VIDEO.id} title={FEATURED_VIDEO.title} />
             </div>
           </div>
         </section>
 
-        {/* ── FAQ ──────────────────────────────────────────────────── */}
-        <section id="faq" className="pk-section pk-faq pk-tone-sand">
-          <div className="pk-wrap pk-faq-grid">
+        {/* ── FAQ ──────────────────────────────────────────────────────── */}
+        <section id="faq" className="pk-section">
+          <div className="pk-wrap pk-faq">
             <div className="pk-faq-head">
-              <Eyebrow>
-                <span data-reveal>Frequently Asked Questions</span>
-              </Eyebrow>
+              <p className="pk-eyebrow" data-reveal>
+                Frequently Asked Questions
+              </p>
               <h2 className="pk-h2" data-reveal style={d('.06s')}>
-                Everything You Need <em>To Know</em>
+                Everything You Need To Know
               </h2>
             </div>
             <div className="pk-faq-list" data-reveal style={d('.1s')}>
               {FAQS.map((f, i) => (
                 <details key={f.q} className="pk-faq-item" open={i === 0}>
                   <summary>
-                    <span className="pk-faq-no">Q.{String(i + 1).padStart(2, '0')}</span>
                     <span className="pk-faq-q">{f.q}</span>
                     <span className="pk-faq-icon" aria-hidden>
-                      <Plus size={16} />
+                      <Plus size={15} />
                     </span>
                   </summary>
                   <p className="pk-faq-a">{f.a}</p>
@@ -638,53 +615,49 @@ export default function Home() {
         </section>
       </main>
 
-      {/* ── FOOTER / CONTACT ───────────────────────────────────────── */}
-      <footer id="contact" className="pk-footer pk-tone-cacao">
+      {/* ── FOOTER · slim ivory, contact ─────────────────────────────── */}
+      <footer id="contact" className="pk-footer">
         <div className="pk-wrap">
-          <div className="pk-footer-top">
-            <div className="pk-footer-brand">
-              <p className="pk-footer-name">Payal Kothari</p>
-              <p className="pk-footer-tag">Nutrition · Gut Health · Mindset · Wellbeing</p>
-              <p className="pk-script pk-footer-script" aria-hidden>
-                A softer, more human kind of progress.
-              </p>
-            </div>
-
-            <div className="pk-footer-contact">
-              <Eyebrow>Contact</Eyebrow>
-              <a href={`mailto:${CONTACT.email}`} className="pk-contact-line">
-                <MailIcon size={18} /> {CONTACT.email}
+          <div className="pk-footer-contact">
+            <p className="pk-eyebrow">Contact</p>
+            <div className="pk-footer-lines">
+              <a href={`mailto:${CONTACT.email}`}>
+                <MailIcon size={17} /> {CONTACT.email}
               </a>
-              <a href={`tel:${CONTACT.phoneHref}`} className="pk-contact-line">
-                <PhoneIcon size={18} /> {CONTACT.phone}
+              <a href={`tel:${CONTACT.phoneHref}`}>
+                <PhoneIcon size={17} /> {CONTACT.phone}
               </a>
-              <div className="pk-socials">
-                <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                  <InstagramIcon size={18} />
-                </a>
-                <a href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                  <FacebookIcon size={18} />
-                </a>
-                <a href={SOCIAL.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-                  <YoutubeIcon size={18} />
-                </a>
-                <a href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                  <LinkedinIcon size={18} />
-                </a>
-              </div>
             </div>
           </div>
 
-          <div className="pk-footer-bottom">
-            <nav aria-label="Footer">
+          <div className="pk-footer-row">
+            <div>
+              <p className="pk-wordmark">Payal Kothari</p>
+              <p className="pk-footer-tag">Nutrition · Gut Health · Mindset · Wellbeing</p>
+            </div>
+            <nav aria-label="Footer" className="pk-footer-nav">
               {NAV.map((n) => (
                 <a key={n.href} href={n.href}>
                   {n.label}
                 </a>
               ))}
             </nav>
-            <p>&copy; {new Date().getFullYear()} Payal Kothari. All rights reserved.</p>
+            <div className="pk-socials">
+              <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                <InstagramIcon size={19} />
+              </a>
+              <a href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <LinkedinIcon size={19} />
+              </a>
+              <a href={SOCIAL.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube">
+                <YoutubeIcon size={19} />
+              </a>
+              <a href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                <FacebookIcon size={19} />
+              </a>
+            </div>
           </div>
+          <p className="pk-footer-legal">&copy; {new Date().getFullYear()} Payal Kothari. All rights reserved.</p>
         </div>
       </footer>
     </>

@@ -23,8 +23,7 @@ export function Header() {
     <header className={`pk-header${scrolled ? ' is-scrolled' : ''}${open ? ' is-open' : ''}`}>
       <div className="pk-wrap pk-header-row">
         <a href="#home" className="pk-wordmark" onClick={() => setOpen(false)}>
-          <span className="pk-wordmark-name">Payal Kothari</span>
-          <span className="pk-wordmark-tag">Nutrition · Gut Health · Mindset · Wellbeing</span>
+          Payal Kothari
         </a>
 
         <nav className="pk-nav" aria-label="Main">

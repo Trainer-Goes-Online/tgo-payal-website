@@ -240,9 +240,9 @@ export default function Home() {
         {/* ── THE SECRET · image left, text right ──────────────────────── */}
         <section id="secret" className="pk-section">
           <div className="pk-wrap pk-split">
-            <figure className="pk-split-media pk-panel-sand" data-reveal>
+            <figure className="pk-split-media pk-panel-sand pk-panel-bleed" data-reveal>
               <Picture
-                img={{ src: '/images/second-brain.webp', w: 1600, h: 1200, alt: 'Illustration of the human digestive system' }}
+                img={{ src: '/images/gut-torso.webp', w: 1356, h: 1160, alt: 'Illustration of the human digestive system with botanical leaves' }}
               />
             </figure>
 

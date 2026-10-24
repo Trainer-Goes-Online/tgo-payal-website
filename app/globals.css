@@ -545,6 +545,15 @@ a.pk-btn[href='#secret']:hover svg {
   object-fit: contain;
 }
 
+.pk-panel-bleed {
+  padding: 0;
+}
+
+.pk-panel-bleed img {
+  object-fit: cover;
+  object-position: 40% 30%;
+}
+
 .pk-split-portrait {
   position: relative;
   aspect-ratio: 4 / 5;

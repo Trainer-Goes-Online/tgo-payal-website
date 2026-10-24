@@ -1285,8 +1285,8 @@ html[data-reveal-armed] [data-reveal].is-in {
     position: relative;
     order: 1;
     margin: 0 auto calc(-1 * var(--section));
-    width: min(100%, 420px);
-    aspect-ratio: 1086 / 1448;
+    width: min(100%, 520px);
+    aspect-ratio: 1299 / 1211;
   }
 
   .pk-secret .pk-split-copy {

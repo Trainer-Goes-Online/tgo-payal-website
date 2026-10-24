@@ -242,7 +242,7 @@ export default function Home() {
           <div className="pk-wrap pk-split">
             <figure className="pk-secret-media" data-reveal>
               <Picture
-                img={{ src: '/images/gut-anatomy.webp', w: 1086, h: 1448, alt: 'Illustration of the human digestive system with botanical leaves' }}
+                img={{ src: '/images/gut-torso-olive.webp', w: 1299, h: 1211, alt: 'Illustration of the human digestive system with botanical leaves' }}
               />
             </figure>
 

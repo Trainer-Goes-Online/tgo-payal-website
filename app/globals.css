@@ -549,12 +549,15 @@ a.pk-btn[href='#secret']:hover svg {
 .pk-secret {
   position: relative;
   overflow: hidden;
+  display: flex;
+  align-items: center;
+  min-height: clamp(720px, 60vw, 960px);
 }
 
 .pk-secret-media {
   position: absolute;
   inset: 0 auto 0 0;
-  width: 60%;
+  width: 70%;
 }
 
 /* auto + max sizes keep the box the picture's own shape, so the fade lands on its real edges */
@@ -1285,6 +1288,11 @@ html[data-reveal-armed] [data-reveal].is-in {
 
   .pk-split-rev .pk-split-media {
     order: -1;
+  }
+
+  .pk-secret {
+    display: block;
+    min-height: 0;
   }
 
   .pk-secret-media {

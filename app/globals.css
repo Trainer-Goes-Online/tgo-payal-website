@@ -555,6 +555,8 @@ a.pk-btn[href='#secret']:hover svg {
   position: absolute;
   inset: 0 auto 0 0;
   width: 50%;
+  mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 84%, transparent 100%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 84%, transparent 100%);
 }
 
 .pk-secret-media img {
@@ -564,8 +566,6 @@ a.pk-btn[href='#secret']:hover svg {
   object-position: left bottom;
   transform: scale(1.2);
   transform-origin: left bottom;
-  mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 84%, transparent 100%);
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 84%, transparent 100%);
 }
 
 .pk-secret .pk-split-copy {

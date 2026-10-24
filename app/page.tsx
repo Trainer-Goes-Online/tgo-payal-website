@@ -186,13 +186,6 @@ export default function Home() {
           <div className="pk-hero-photo" aria-hidden>
             <Picture img={{ src: '/images/payal-hero-sunlit.webp', w: 1536, h: 1024, alt: '' }} eager />
           </div>
-          <p className="pk-script pk-hero-script" aria-hidden>
-            Science.
-            <br />
-            Compassion.
-            <br />
-            Real Life.
-          </p>
           <ul className="pk-hero-stack" aria-hidden>
             <li>People</li>
             <li>Food</li>
@@ -219,6 +212,9 @@ export default function Home() {
                   Uncover The Secret <ArrowDown size={15} />
                 </a>
               </div>
+              <p className="pk-script pk-hero-script" aria-hidden data-reveal style={d('.36s')}>
+                Science. Compassion. Real Life.
+              </p>
             </div>
           </div>
         </section>

@@ -459,22 +459,8 @@ a.pk-btn[href='#secret']:hover svg {
 }
 
 .pk-hero-script {
-  position: absolute;
-  z-index: 2;
-  top: clamp(40px, 7vw, 90px);
-  right: clamp(24px, 5vw, 80px);
-  font-size: clamp(30px, 2.8vw, 40px);
-  transform: rotate(-8deg);
-}
-
-.pk-hero-script::after {
-  content: '';
-  display: block;
-  width: 70px;
-  height: 1px;
-  margin: 22px 0 0 auto;
-  background: rgba(var(--oxblood-rgb), 0.5);
-  transform: rotate(8deg);
+  margin-top: 34px;
+  font-size: clamp(28px, 2.4vw, 36px);
 }
 
 .pk-hero-stack {
@@ -1395,9 +1381,7 @@ html[data-reveal-armed] [data-reveal].is-in {
   }
 
   .pk-hero-script {
-    top: 18px;
-    right: 18px;
-    font-size: 28px;
+    font-size: 26px;
   }
 
   .pk-hero-copy {

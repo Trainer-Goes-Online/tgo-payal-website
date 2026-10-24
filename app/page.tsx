@@ -184,7 +184,7 @@ export default function Home() {
         {/* ── HERO · full-bleed portrait fading into ivory ─────────────── */}
         <section id="home" className="pk-hero">
           <div className="pk-hero-photo" aria-hidden>
-            <Picture img={{ src: '/images/payal-hero.webp', w: 1102, h: 1444, alt: '' }} eager />
+            <Picture img={{ src: '/images/payal-hero-sunlit.webp', w: 1536, h: 1024, alt: '' }} eager />
           </div>
           <p className="pk-script pk-hero-script" aria-hidden>
             Science.

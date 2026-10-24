@@ -561,7 +561,7 @@ a.pk-btn[href='#secret']:hover svg {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  object-position: left bottom;
+  object-position: center bottom;
 }
 
 .pk-secret .pk-split-copy {
@@ -1284,9 +1284,9 @@ html[data-reveal-armed] [data-reveal].is-in {
   .pk-secret-media {
     position: relative;
     order: 1;
-    width: auto;
-    margin: 0 calc(-1 * var(--gutter)) calc(-1 * var(--section));
-    aspect-ratio: 1356 / 1160;
+    margin: 0 auto calc(-1 * var(--section));
+    width: min(100%, 420px);
+    aspect-ratio: 1086 / 1448;
   }
 
   .pk-secret .pk-split-copy {

@@ -545,13 +545,27 @@ a.pk-btn[href='#secret']:hover svg {
   object-fit: contain;
 }
 
-.pk-panel-bleed {
-  padding: 0;
+/* torso bleeds to the section's left, top and bottom edges */
+.pk-secret {
+  position: relative;
+  overflow: hidden;
 }
 
-.pk-panel-bleed img {
+.pk-secret-media {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 50%;
+}
+
+.pk-secret-media img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: 40% 30%;
+  object-position: 0% 40%;
+}
+
+.pk-secret .pk-split-copy {
+  grid-column: 2;
 }
 
 .pk-split-portrait {
@@ -1265,6 +1279,21 @@ html[data-reveal-armed] [data-reveal].is-in {
 
   .pk-split-rev .pk-split-media {
     order: -1;
+  }
+
+  .pk-secret {
+    padding-top: 0;
+  }
+
+  .pk-secret-media {
+    position: relative;
+    width: auto;
+    margin: 0 calc(-1 * var(--gutter)) 8px;
+    aspect-ratio: 1356 / 1160;
+  }
+
+  .pk-secret .pk-split-copy {
+    grid-column: auto;
   }
 
   .pk-split-portrait {

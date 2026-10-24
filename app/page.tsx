@@ -238,9 +238,9 @@ export default function Home() {
         </section>
 
         {/* ── THE SECRET · image left, text right ──────────────────────── */}
-        <section id="secret" className="pk-section">
+        <section id="secret" className="pk-section pk-secret">
           <div className="pk-wrap pk-split">
-            <figure className="pk-split-media pk-panel-sand pk-panel-bleed" data-reveal>
+            <figure className="pk-secret-media" data-reveal>
               <Picture
                 img={{ src: '/images/gut-torso.webp', w: 1356, h: 1160, alt: 'Illustration of the human digestive system with botanical leaves' }}
               />

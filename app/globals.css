@@ -594,19 +594,20 @@ a.pk-btn[href='#secret']:hover svg {
   box-shadow: var(--shadow-card);
 }
 
-.pk-portrait-script {
-  position: absolute;
-  left: -28px;
-  bottom: -22px;
-  font-size: clamp(30px, 2.8vw, 40px);
-  transform: rotate(-7deg);
-  text-shadow: 0 0 18px var(--ivory);
+/* the peach cover disappears on sand, so the book sits on olive */
+.pk-panel-sand.pk-book-media {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--olive);
 }
 
-.pk-book-media img {
+.pk-panel-sand.pk-book-media img {
   width: auto;
-  height: 88%;
-  filter: drop-shadow(0 22px 26px rgba(var(--cacao-rgb), 0.28));
+  height: 86%;
+  max-width: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 24px 28px rgba(var(--cacao-rgb), 0.45));
 }
 
 /* ═══ QUOTE BAND ═════════════════════════════════════════════════════════ */
@@ -825,19 +826,17 @@ a.pk-btn[href='#secret']:hover svg {
   }
 }
 
-/* ═══ FEATURED IN · quiet logo wall ══════════════════════════════════════ */
+/* ═══ FEATURED IN · logo slider ══════════════════════════════════════════ */
 .pk-logos {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 14px;
-  margin-top: clamp(36px, 4vw, 52px);
+  margin-top: clamp(28px, 3vw, 40px);
 }
 
-.pk-logos li {
+.pk-logo {
+  flex: 0 0 auto;
   display: grid;
   place-items: center;
   height: 76px;
+  margin-right: 14px;
   padding: 16px 24px;
   border: 1px solid var(--hair);
   border-radius: var(--radius);
@@ -857,7 +856,7 @@ a.pk-btn[href='#secret']:hover svg {
     opacity 0.5s var(--ease);
 }
 
-.pk-logos li:hover img {
+.pk-logo:hover img {
   filter: none;
   opacity: 1;
 }
@@ -1471,7 +1470,7 @@ html[data-reveal-armed] [data-reveal].is-in {
     letter-spacing: 0.3em;
   }
 
-  .pk-logos li {
+  .pk-logo {
     height: 62px;
     padding: 12px 16px;
   }
@@ -1487,10 +1486,6 @@ html[data-reveal-armed] [data-reveal].is-in {
   .pk-people .pk-card-title {
     font-size: 17px;
     padding: 14px 12px 16px;
-  }
-
-  .pk-portrait-script {
-    left: 8px;
   }
 
   .pk-footer-row {

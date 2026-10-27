@@ -334,9 +334,6 @@ export default function Home() {
               <Picture
                 img={{ src: '/images/payal-the-gut.webp', w: 904, h: 1280, alt: 'Payal Kothari holding her book, The Gut' }}
               />
-              <p className="pk-script pk-portrait-script" aria-hidden>
-                Health starts within
-              </p>
             </figure>
           </div>
 
@@ -360,13 +357,16 @@ export default function Home() {
             <h2 className="pk-h2 is-center" data-reveal>
               Featured In Leading Publications
             </h2>
-            <ul className="pk-logos" data-reveal style={d('.08s')}>
-              {PRESS_LOGOS.map((l) => (
-                <li key={l.src}>
-                  <Picture img={l} />
-                </li>
-              ))}
-            </ul>
+          </div>
+          <div className="pk-logos" data-reveal style={d('.08s')}>
+            <Marquee
+              items={PRESS_LOGOS}
+              render={(img, key, dec) => (
+                <div className="pk-logo" key={key}>
+                  <Picture img={dec ? { ...img, alt: '' } : img} />
+                </div>
+              )}
+            />
           </div>
         </section>
 

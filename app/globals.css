@@ -835,9 +835,9 @@ a.pk-btn[href='#secret']:hover svg {
   flex: 0 0 auto;
   display: grid;
   place-items: center;
-  height: 76px;
-  margin-right: 14px;
-  padding: 16px 24px;
+  height: 152px;
+  margin-right: 20px;
+  padding: 32px 48px;
   border: 1px solid var(--hair);
   border-radius: var(--radius);
   background: var(--ivory);
@@ -845,8 +845,8 @@ a.pk-btn[href='#secret']:hover svg {
 
 .pk-logos img {
   width: auto;
-  height: 44px;
-  max-width: 150px;
+  height: 88px;
+  max-width: 300px;
   object-fit: contain;
   mix-blend-mode: multiply;
   filter: grayscale(1) contrast(1.1);
@@ -1471,13 +1471,13 @@ html[data-reveal-armed] [data-reveal].is-in {
   }
 
   .pk-logo {
-    height: 62px;
-    padding: 12px 16px;
+    height: 124px;
+    padding: 24px 32px;
   }
 
   .pk-logos img {
-    height: 36px;
-    max-width: 112px;
+    height: 72px;
+    max-width: 224px;
   }
 
   .pk-people {

@@ -709,14 +709,6 @@ a.pk-btn[href='#secret']:hover svg {
   padding: 6% 0 0;
 }
 
-.pk-card-img-portrait {
-  aspect-ratio: 4 / 5;
-}
-
-.pk-card-img-portrait img {
-  object-position: 50% 22%;
-}
-
 .pk-card-body {
   display: flex;
   flex: 1;
@@ -831,6 +823,10 @@ a.pk-btn[href='#secret']:hover svg {
   margin-top: clamp(28px, 3vw, 40px);
 }
 
+.pk-logos .pk-marquee:first-child {
+  padding-bottom: 8px;
+}
+
 .pk-logo {
   flex: 0 0 auto;
   display: grid;
@@ -861,6 +857,126 @@ a.pk-btn[href='#secret']:hover svg {
   opacity: 1;
 }
 
+/* As Seen In: leaf shadows in two corners, sprig ornaments, soft ivory cards,
+   logos inked warm brown instead of grey */
+.pk-press {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.pk-press-leaf {
+  position: absolute;
+  z-index: -1;
+  width: min(36vw, 440px);
+  aspect-ratio: 1;
+  background: url('/images/leaf-shadow.webp') center / cover no-repeat;
+  opacity: 0.45;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  mask-image: radial-gradient(closest-side, #000 40%, transparent);
+  -webkit-mask-image: radial-gradient(closest-side, #000 40%, transparent);
+}
+
+/* this artwork is already a soft, transparent corner shadow: no mask, no offset */
+.pk-press-leaf.is-tl {
+  top: 0;
+  left: 0;
+  width: min(58vw, 760px);
+  aspect-ratio: 1672 / 941;
+  background: url('/images/olive-leaf-shadows.png') left top / contain no-repeat;
+  opacity: 0.9;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+.pk-press-leaf.is-br {
+  right: 0;
+  bottom: 0;
+  width: min(58vw, 760px);
+  aspect-ratio: 1672 / 941;
+  background: url('/images/olive-branch.png') right bottom / contain no-repeat;
+  opacity: 0.9;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+.pk-orn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 22px;
+  color: var(--olive);
+}
+
+.pk-orn span {
+  width: 96px;
+  height: 1px;
+  background: rgba(var(--cacao-rgb), 0.22);
+}
+
+.pk-orn.is-foot {
+  margin: clamp(20px, 2.4vw, 32px) 0 0;
+}
+
+.pk-press-h {
+  margin-bottom: 12px;
+}
+
+.pk-press-sub {
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.pk-press .pk-logo {
+  min-width: 200px;
+  height: 128px;
+  margin-right: 18px;
+  padding: 26px 40px;
+  border-radius: 10px;
+  background: #fdfbf8;
+  box-shadow: var(--shadow-card);
+}
+
+.pk-press .pk-logo img {
+  height: 50px;
+  max-width: 190px;
+  filter: grayscale(1) sepia(0.45) brightness(0.85) contrast(1.05);
+  opacity: 0.9;
+}
+
+.pk-press .pk-logo:hover img {
+  filter: none;
+  opacity: 1;
+}
+
+@media (max-width: 760px) {
+  .pk-press .pk-logo {
+    min-width: 150px;
+    height: 100px;
+    padding: 18px 26px;
+  }
+
+  .pk-press .pk-logo img {
+    height: 40px;
+    max-width: 150px;
+  }
+
+  .pk-press-sub {
+    font-size: 10.5px;
+    letter-spacing: 0.24em;
+  }
+
+  .pk-orn span {
+    width: 64px;
+  }
+}
+
 /* ═══ TRUSTED BY ═════════════════════════════════════════════════════════ */
 .pk-people {
   display: grid;
@@ -870,15 +986,91 @@ a.pk-btn[href='#secret']:hover svg {
 }
 
 .pk-people .pk-card-title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
   padding: 18px 20px 20px;
   text-align: center;
+}
+
+/* landscape frame; each photo sets its own --pos (and --zoom) in lib/site.ts */
+.pk-card-img-person img {
+  object-position: var(--pos, 50% 24%);
+  transform: scale(var(--zoom, 1));
+}
+
+.pk-card:hover .pk-card-img-person img {
+  transform: scale(calc(var(--zoom, 1) * 1.04));
+}
+
+.pk-card-role {
+  font-family: var(--f-sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-soft);
 }
 
 /* ═══ SERVICES ═══════════════════════════════════════════════════════════ */
 .pk-services {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: clamp(16px, 1.8vw, 24px);
+}
+
+/* horizontal cards: photo fills the left half, copy on the right */
+.pk-service {
+  flex-direction: row;
+  min-height: clamp(280px, 24vw, 330px);
+}
+
+.pk-service .pk-card-img {
+  flex: 0 0 46%;
+  aspect-ratio: auto;
+}
+
+.pk-service .pk-card-body {
+  justify-content: center;
+  padding: clamp(24px, 2.4vw, 36px) clamp(22px, 2.4vw, 34px);
+}
+
+.pk-service .pk-card-title {
+  font-size: clamp(24px, 2vw, 30px);
+  line-height: 1.18;
+  color: var(--oxblood);
+}
+
+.pk-service .pk-card-text {
+  flex: 0 0 auto;
+  margin: 12px 0 24px;
+}
+
+.pk-service .pk-arrow-link {
+  align-self: flex-start;
+  gap: 18px;
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+}
+
+/* one line under the label only; inline-block keeps it a single line even if
+   a narrow card wraps the words. The arrow sits outside it. */
+.pk-service .pk-arrow-label {
+  display: inline-block;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(var(--oxblood-rgb), 0.4);
+}
+
+.pk-eyebrow.is-lined::after {
+  content: '';
+  display: inline-block;
+  width: 40px;
+  height: 1px;
+  margin-left: 14px;
+  vertical-align: middle;
+  background: currentColor;
+  opacity: 0.45;
 }
 
 /* ═══ RESULTS ════════════════════════════════════════════════════════════ */
@@ -1517,5 +1709,24 @@ html[data-reveal-armed] [data-reveal].is-in {
   *::after {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
+  }
+}
+
+/* services: one horizontal card per row on tablets, photo-on-top on phones */
+@media (max-width: 960px) {
+  .pk-services {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .pk-service {
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .pk-service .pk-card-img {
+    flex: none;
+    aspect-ratio: 16 / 10;
   }
 }

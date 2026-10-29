@@ -78,14 +78,16 @@ export const MEDIA_FEATURES: Img[] = [
   { src: '/images/media/feature-10.webp', w: 1066, h: 844, alt: 'Mumbai Mirror: the Darji family testimonial' },
 ];
 
-export const TRUSTED: (Img & { name?: string })[] = [
-  { src: '/images/trusted/pritam.webp', w: 825, h: 1100, alt: 'Payal Kothari with Pritam', name: 'Pritam' },
-  { src: '/images/trusted/anand-mahindra.webp', w: 825, h: 1100, alt: 'Payal Kothari with Anand Mahindra', name: 'Anand Mahindra' },
-  { src: '/images/trusted/neil-nitin-mukesh.webp', w: 718, h: 488, alt: 'Payal Kothari with Neil Nitin Mukesh', name: 'Neil Nitin Mukesh' },
-  { src: '/images/trusted/paul-mckenna.webp', w: 619, h: 1100, alt: 'Payal Kothari with Paul McKenna', name: 'Paul Mckenna' },
-  { src: '/images/trusted/mickey-mehta.webp', w: 825, h: 1100, alt: 'Payal Kothari with Mickey Mehta', name: 'Mickey Mehta' },
+/* `pos` frames both faces inside the 16:10 card; `zoom` crops the video
+   screenshot's baked-in black bars and grey border. */
+export const TRUSTED: (Img & { name?: string; role?: string; pos?: string; zoom?: number })[] = [
+  { src: '/images/trusted/pritam.webp', w: 825, h: 1100, alt: 'Payal Kothari with Pritam', name: 'Pritam', role: 'Music Composer', pos: '50% 30%' },
+  { src: '/images/trusted/anand-mahindra.webp', w: 825, h: 1100, alt: 'Payal Kothari with Anand Mahindra', name: 'Anand Mahindra', role: 'Chairman, Mahindra Group', pos: '50% 33%' },
+  { src: '/images/trusted/neil-nitin-mukesh.webp', w: 718, h: 488, alt: 'Payal Kothari with Neil Nitin Mukesh', name: 'Neil Nitin Mukesh', role: 'Actor', pos: '50% 50%', zoom: 1.22 },
+  { src: '/images/trusted/paul-mckenna.webp', w: 619, h: 1100, alt: 'Payal Kothari with Paul McKenna', name: 'Paul Mckenna', role: 'Hypnotist & Author', pos: '50% 27%' },
+  { src: '/images/trusted/mickey-mehta.webp', w: 825, h: 1100, alt: 'Payal Kothari with Mickey Mehta', name: 'Mickey Mehta', role: 'Holistic Health Coach', pos: '50% 15%' },
   /* PENDING: the copy lists this person as "Name unknown". */
-  { src: '/images/trusted/workshop.webp', w: 1024, h: 768, alt: 'Payal Kothari at a gut reset workshop' },
+  { src: '/images/trusted/workshop.webp', w: 1024, h: 768, alt: 'Payal Kothari at a gut reset workshop', pos: '50% 30%' },
 ];
 
 export const RESULTS: Img[] = [

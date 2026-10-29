@@ -92,7 +92,7 @@ const SERVICES = [
     body: 'A practical, guided approach to better nutrition, bringing together meal guidance, recipes, habit tracking, gut-focused wellness products and WhatsApp support.',
     cta: 'Explore The Programme',
     href: LINKS.programme,
-    img: { src: '/images/service-nutrition.webp', w: 853, h: 639, alt: 'Payal Kothari at a live nutrition demo' },
+    img: { src: '/images/service-nutrition-bowl.png', w: 1448, h: 1086, alt: 'A nourishing bowl of roasted vegetables, greens and grains' },
   },
   {
     no: '02',
@@ -102,8 +102,7 @@ const SERVICES = [
     cta: 'Explore GutAvatar',
     href: LINKS.gutavatar,
     external: true,
-    product: true,
-    img: { src: '/images/service-gutavatar.webp', w: 1200, h: 900, alt: 'GutAvatar Magic Mix, Curcumin Cure Mix and Alkaline Immunity Mix' },
+    img: { src: '/images/service-gutavatar-jars.png', w: 1448, h: 1086, alt: 'GutAvatar gut wellness products' },
   },
   {
     no: '03',
@@ -112,7 +111,7 @@ const SERVICES = [
     body: 'For those seeking deeper, individualised attention, work personally with Payal on a nutrition approach built around your health history, goals and lifestyle.',
     cta: 'Enquire About Consultations',
     href: LINKS.consultation,
-    img: { src: '/images/service-consultation.webp', w: 676, h: 507, alt: 'Payal Kothari with fresh dragon fruit' },
+    img: { src: '/images/payal_private_consultation_white.png', w: 765, h: 510, alt: 'Payal Kothari in a private consultation' },
   },
   {
     no: '04',
@@ -121,7 +120,7 @@ const SERVICES = [
     body: "Bring Payal's expertise in gut health, nutrition and the mind-gut connection to your corporate events, leadership forums and wellness workshops through engaging, insightful and practical sessions.",
     cta: 'Invite Payal To Speak',
     href: LINKS.speaking,
-    img: { src: '/images/service-speaking.webp', w: 1200, h: 900, alt: 'Payal Kothari speaking at a Femina event' },
+    img: { src: '/images/service-speaking-stage.png', w: 1448, h: 1086, alt: 'Payal Kothari speaking to an audience' },
   },
 ];
 
@@ -332,7 +331,7 @@ export default function Home() {
 
             <figure className="pk-split-media pk-split-portrait" data-reveal style={d('.08s')}>
               <Picture
-                img={{ src: '/images/payal-the-gut.webp', w: 904, h: 1280, alt: 'Payal Kothari holding her book, The Gut' }}
+                img={{ src: '/images/payal-about.png', w: 1122, h: 1402, alt: 'Payal Kothari' }}
               />
             </figure>
           </div>
@@ -352,21 +351,40 @@ export default function Home() {
         </section>
 
         {/* ── FEATURED IN ──────────────────────────────────────────────── */}
-        <section className="pk-section pk-tint">
+        <section className="pk-section pk-tint pk-press">
+          <span className="pk-press-leaf is-tl" aria-hidden />
+          <span className="pk-press-leaf is-br" aria-hidden />
           <div className="pk-wrap">
-            <h2 className="pk-h2 is-center" data-reveal>
-              Featured In Leading Publications
+            <div className="pk-orn" aria-hidden>
+              <span />
+              <LeafIcon size={18} />
+              <span />
+            </div>
+            <h2 className="pk-h2 is-center pk-press-h" data-reveal>
+              As Seen In Leading Publications
             </h2>
+            <p className="pk-press-sub" data-reveal style={d('.04s')}>
+              Trusted conversations. Meaningful recognition.
+            </p>
           </div>
           <div className="pk-logos" data-reveal style={d('.08s')}>
-            <Marquee
-              items={PRESS_LOGOS}
-              render={(img, key, dec) => (
-                <div className="pk-logo" key={key}>
-                  <Picture img={dec ? { ...img, alt: '' } : img} />
-                </div>
-              )}
-            />
+            {[PRESS_LOGOS.slice(0, 10), PRESS_LOGOS.slice(10)].map((row, r) => (
+              <Marquee
+                key={r}
+                items={row}
+                direction={r === 0 ? 'rtl' : 'ltr'}
+                render={(img, key, dec) => (
+                  <div className="pk-logo" key={key}>
+                    <Picture img={dec ? { ...img, alt: '' } : img} />
+                  </div>
+                )}
+              />
+            ))}
+          </div>
+          <div className="pk-orn is-foot" aria-hidden>
+            <span />
+            <LeafIcon size={18} />
+            <span />
           </div>
         </section>
 
@@ -379,10 +397,18 @@ export default function Home() {
             <ul className="pk-people">
               {TRUSTED.map((t, i) => (
                 <li key={t.src} className="pk-card" data-reveal style={d(`${0.04 + i * 0.05}s`)}>
-                  <div className="pk-card-img pk-card-img-portrait">
+                  <div
+                    className="pk-card-img pk-card-img-person"
+                    style={{ '--pos': t.pos, '--zoom': t.zoom } as CSSProperties}
+                  >
                     <Picture img={t} />
                   </div>
-                  {t.name ? <p className="pk-card-title">{t.name}</p> : null}
+                  {t.name ? (
+                    <p className="pk-card-title">
+                      {t.name}
+                      {t.role ? <span className="pk-card-role">{t.role}</span> : null}
+                    </p>
+                  ) : null}
                 </li>
               ))}
             </ul>
@@ -393,7 +419,7 @@ export default function Home() {
         <section id="services" className="pk-section pk-tint">
           <div className="pk-wrap">
             <div className="pk-head">
-              <p className="pk-eyebrow is-center" data-reveal>
+              <p className="pk-eyebrow is-center is-lined" data-reveal>
                 Our Services
               </p>
               <h2 className="pk-h2 is-center" data-reveal style={d('.06s')}>
@@ -422,7 +448,8 @@ export default function Home() {
                       className="pk-arrow-link"
                       {...(s.external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                     >
-                      {s.cta} {s.external ? <ArrowUpRight size={15} /> : <ArrowRight size={15} />}
+                      <span className="pk-arrow-label">{s.cta}</span>
+                      <ArrowRight size={15} />
                     </a>
                   </div>
                 </article>

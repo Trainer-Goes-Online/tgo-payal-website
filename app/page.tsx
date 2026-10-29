@@ -434,7 +434,7 @@ export default function Home() {
             <div className="pk-services">
               {SERVICES.map((s, i) => (
                 <article key={s.no} className="pk-card pk-service" data-reveal style={d(`${0.04 + i * 0.07}s`)}>
-                  <div className={`pk-card-img${s.product ? ' is-product' : ''}`}>
+                  <div className="pk-card-img">
                     <Picture img={s.img} />
                   </div>
                   <div className="pk-card-body">

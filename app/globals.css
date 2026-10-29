@@ -697,18 +697,6 @@ a.pk-btn[href='#secret']:hover svg {
   transform: scale(1.04);
 }
 
-.pk-card-img.is-product {
-  background:
-    radial-gradient(70% 70% at 50% 40%, rgba(var(--ivory-rgb), 0.9), transparent 75%),
-    rgba(var(--sand-rgb), 0.55);
-}
-
-.pk-card-img.is-product img {
-  object-fit: contain;
-  mix-blend-mode: multiply;
-  padding: 6% 0 0;
-}
-
 .pk-card-body {
   display: flex;
   flex: 1;

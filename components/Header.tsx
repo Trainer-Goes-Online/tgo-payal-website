@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, type CSSProperties } from 'react';
 
 import { NAV } from '@/lib/site';
+import { WORDMARK_GLYPHS, WORDMARK_VIEWBOX } from '@/lib/wordmark';
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -22,8 +23,18 @@ export function Header() {
   return (
     <header className={`pk-header${scrolled ? ' is-scrolled' : ''}${open ? ' is-open' : ''}`}>
       <div className="pk-wrap pk-header-row">
-        <a href="#home" className="pk-wordmark" onClick={() => setOpen(false)}>
-          Payal Kothari
+        <a href="/" className="pk-wordmark" aria-label="gut avatar, home" onClick={() => setOpen(false)}>
+          <svg viewBox={WORDMARK_VIEWBOX} role="img" aria-label="gut avatar">
+            {WORDMARK_GLYPHS.map((d, i) => (
+              <path
+                key={i}
+                d={d}
+                pathLength={1}
+                className={i === 0 ? 'pk-wm-g' : 'pk-wm-l'}
+                style={{ '--i': i } as CSSProperties}
+              />
+            ))}
+          </svg>
         </a>
 
         <nav className="pk-nav" aria-label="Main">

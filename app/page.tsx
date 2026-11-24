@@ -1,5 +1,6 @@
 import type { CSSProperties } from 'react';
 
+import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { Reveal } from '@/components/Reveal';
 import { YouTubeLite } from '@/components/YouTubeLite';
@@ -8,25 +9,17 @@ import {
   ArrowRight,
   ArrowUpRight,
   BookIcon,
-  FacebookIcon,
   GutIcon,
-  InstagramIcon,
   LeafIcon,
-  LinkedinIcon,
-  MailIcon,
   MindIcon,
-  PhoneIcon,
   Plus,
   Star,
-  YoutubeIcon,
 } from '@/components/icons';
 import {
   BOOK_STORES,
-  CONTACT,
   FEATURED_VIDEO,
   LINKS,
   MEDIA_FEATURES,
-  NAV,
   PODCASTS,
   PRESS_LOGOS,
   RESULTS,
@@ -87,12 +80,12 @@ const FOCUS = [
 const SERVICES = [
   {
     no: '01',
-    kicker: 'Guided Nutrition',
-    title: 'The 4-Week Nutrition Experience',
-    body: 'A practical, guided approach to better nutrition, bringing together meal guidance, recipes, habit tracking, gut-focused wellness products and WhatsApp support.',
-    cta: 'Explore The Programme',
-    href: LINKS.programme,
-    img: { src: '/images/service-nutrition-bowl.png', w: 1448, h: 1086, alt: 'A nourishing bowl of roasted vegetables, greens and grains' },
+    kicker: 'Personalised Expertise',
+    title: 'Private Gut Reset & Weight Loss Consultation',
+    body: 'For those seeking deeper, individualised attention, work personally with Payal on a nutrition approach built around your health history, goals and lifestyle.',
+    cta: 'Enquire About Consultations',
+    href: LINKS.consultation,
+    img: { src: '/images/payal_private_consultation_white.png', w: 765, h: 510, alt: 'Payal Kothari in a private consultation' },
   },
   {
     no: '02',
@@ -106,20 +99,20 @@ const SERVICES = [
   },
   {
     no: '03',
-    kicker: 'Personalised Expertise',
-    title: 'Private Consultations',
-    body: 'For those seeking deeper, individualised attention, work personally with Payal on a nutrition approach built around your health history, goals and lifestyle.',
-    cta: 'Enquire About Consultations',
-    href: LINKS.consultation,
-    img: { src: '/images/payal_private_consultation_white.png', w: 765, h: 510, alt: 'Payal Kothari in a private consultation' },
+    kicker: 'Guided Nutrition',
+    title: 'Four-Week Gut Reset Program',
+    body: 'A practical, guided approach to better nutrition, bringing together meal guidance, recipes, habit tracking, gut-focused wellness products and WhatsApp support.',
+    cta: 'Explore The Programme',
+    href: LINKS.programme,
+    img: { src: '/images/service-nutrition-bowl.png', w: 1448, h: 1086, alt: 'A nourishing bowl of roasted vegetables, greens and grains' },
   },
   {
     no: '04',
     kicker: 'Speaking & Workshops',
-    title: 'Speaking Engagements',
+    title: 'Speaking Engagements & Panel Discussions',
     body: "Bring Payal's expertise in gut health, nutrition and the mind-gut connection to your corporate events, leadership forums and wellness workshops through engaging, insightful and practical sessions.",
-    cta: 'Invite Payal To Speak',
-    href: LINKS.speaking,
+    cta: 'Explore Speaking Events',
+    href: LINKS.speakingEvents,
     img: { src: '/images/service-speaking-stage.png', w: 1448, h: 1086, alt: 'Payal Kothari speaking to an audience' },
   },
 ];
@@ -183,7 +176,7 @@ export default function Home() {
         {/* ── HERO · full-bleed portrait fading into ivory ─────────────── */}
         <section id="home" className="pk-hero">
           <div className="pk-hero-photo" aria-hidden>
-            <Picture img={{ src: '/images/payal-hero-sunlit.webp', w: 1536, h: 1024, alt: '' }} eager />
+            <Picture img={{ src: '/images/payal-hero-the-gut.webp', w: 1535, h: 1024, alt: '' }} eager />
           </div>
           <ul className="pk-hero-stack" aria-hidden>
             <li>People</li>
@@ -220,20 +213,22 @@ export default function Home() {
 
         {/* ── FOCUS STRIP ──────────────────────────────────────────────── */}
         <section className="pk-focus" aria-label="Payal Kothari's credentials">
-          <ul className="pk-wrap pk-focus-row">
-            {FOCUS.map(({ Icon, a, b }, i) => (
-              <li key={a} data-reveal style={d(`${0.04 + i * 0.06}s`)}>
-                <span className="pk-icon-circle">
-                  <Icon size={22} />
-                </span>
-                <span className="pk-focus-text">
-                  {a}
-                  <br />
-                  {b}
-                </span>
-              </li>
-            ))}
-          </ul>
+          <div className="pk-wrap">
+            <ul className="pk-focus-row" data-reveal>
+              {FOCUS.map(({ Icon, a, b }) => (
+                <li key={a}>
+                  <span className="pk-icon-circle">
+                    <Icon size={20} />
+                  </span>
+                  <span className="pk-focus-text">
+                    {a}
+                    <br />
+                    {b}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </section>
 
         {/* ── THE SECRET · image left, text right ──────────────────────── */}
@@ -241,7 +236,7 @@ export default function Home() {
           <div className="pk-wrap pk-split">
             <figure className="pk-secret-media" data-reveal>
               <Picture
-                img={{ src: '/images/gut-torso-olive.webp', w: 1299, h: 1211, alt: 'Illustration of the human digestive system with botanical leaves' }}
+                img={{ src: '/images/gut-anatomy-ivory.webp', w: 1122, h: 1402, alt: 'Translucent illustration of the human digestive system' }}
               />
             </figure>
 
@@ -297,29 +292,25 @@ export default function Home() {
           <div className="pk-wrap pk-split pk-split-rev">
             <div className="pk-split-copy">
               <p className="pk-eyebrow" data-reveal>
-                The Woman Behind &ldquo;The Gut&rdquo;
+                Gut Health Nutritionist &middot; Metabolic Longevity Advisor &middot; Author &middot; Founder, GUT AVATAR&trade;
               </p>
               <h2 className="pk-h2" data-reveal style={d('.06s')}>
                 Meet Payal Kothari
               </h2>
               <p className="pk-question" data-reveal style={d('.12s')}>
-                &ldquo;What Once Made Me Struggle With My Health Eventually Gave Me My Purpose.&rdquo;
+                &ldquo;True wellness begins in the gut. Longevity begins with how we nourish, understand
+                and care for our bodies.&rdquo;
               </p>
               <div className="pk-body" data-reveal style={d('.18s')}>
                 <p>
-                  A Certified Gut Health Nutritionist, Weight Loss Specialist, NLP Master Practitioner,
-                  bestselling author of <em>The Gut</em> and Founder of GutAvatar, Payal Kothari has spent
-                  over a decade exploring the connection between gut health, nutrition, the mind and
-                  sustainable weight management.
+                  Payal Kothari is a certified Clinical Gut Health Nutritionist, Holistic Wellness Coach,
+                  NLP Master Practitioner, author of <em>THE GUT</em>, and founder of GUT AVATAR&trade;, a
+                  natural wellness brand rooted in traditional Indian wisdom and modern nutritional science.
                 </p>
                 <p>
-                  But her journey didn&rsquo;t begin with professional qualifications or a successful
-                  nutrition practice. It began with her own struggles with food, weight and health.
-                </p>
-                <p>
-                  What started as a personal search for answers eventually became the foundation of her
-                  work, inspiring a bestselling book, a gut-focused wellness brand and a mission to help
-                  others approach their health differently.
+                  With over two decades of experience, Payal has guided thousands of individuals towards
+                  better digestive health, sustainable weight management, metabolic balance and improved
+                  quality of life.
                 </p>
               </div>
               <div data-reveal style={d('.24s')}>
@@ -335,22 +326,9 @@ export default function Home() {
               />
             </figure>
           </div>
-
-          <div className="pk-media" data-reveal>
-            <p className="pk-eyebrow is-center">Media Features</p>
-            <Marquee
-              items={MEDIA_FEATURES}
-              className="pk-marquee-slow"
-              render={(img, key, dec) => (
-                <figure className="pk-clip" key={key}>
-                  <Picture img={dec ? { ...img, alt: '' } : img} />
-                </figure>
-              )}
-            />
-          </div>
         </section>
 
-        {/* ── FEATURED IN ──────────────────────────────────────────────── */}
+        {/* ── PRESS & MEDIA · logos and clippings in one section ─────────── */}
         <section className="pk-section pk-tint pk-press">
           <span className="pk-press-leaf is-tl" aria-hidden />
           <span className="pk-press-leaf is-br" aria-hidden />
@@ -380,6 +358,18 @@ export default function Home() {
                 )}
               />
             ))}
+          </div>
+          <div className="pk-media" data-reveal>
+            <p className="pk-eyebrow is-center">Media Features</p>
+            <Marquee
+              items={MEDIA_FEATURES}
+              className="pk-marquee-slow"
+              render={(img, key, dec) => (
+                <figure className="pk-clip" key={key}>
+                  <Picture img={dec ? { ...img, alt: '' } : img} />
+                </figure>
+              )}
+            />
           </div>
           <div className="pk-orn is-foot" aria-hidden>
             <span />
@@ -482,7 +472,7 @@ export default function Home() {
             />
           </div>
           <div className="pk-wrap pk-center" data-reveal>
-            <a href={LINKS.successStories} className="pk-arrow-link" target="_blank" rel="noopener noreferrer">
+            <a href={LINKS.successStories} className="pk-arrow-link">
               See More Success Stories <ArrowRight size={15} />
             </a>
           </div>
@@ -638,51 +628,7 @@ export default function Home() {
         </section>
       </main>
 
-      {/* ── FOOTER · slim ivory, contact ─────────────────────────────── */}
-      <footer id="contact" className="pk-footer">
-        <div className="pk-wrap">
-          <div className="pk-footer-contact">
-            <p className="pk-eyebrow">Contact</p>
-            <div className="pk-footer-lines">
-              <a href={`mailto:${CONTACT.email}`}>
-                <MailIcon size={17} /> {CONTACT.email}
-              </a>
-              <a href={`tel:${CONTACT.phoneHref}`}>
-                <PhoneIcon size={17} /> {CONTACT.phone}
-              </a>
-            </div>
-          </div>
-
-          <div className="pk-footer-row">
-            <div>
-              <p className="pk-wordmark">Payal Kothari</p>
-              <p className="pk-footer-tag">Nutrition · Gut Health · Mindset · Wellbeing</p>
-            </div>
-            <nav aria-label="Footer" className="pk-footer-nav">
-              {NAV.map((n) => (
-                <a key={n.href} href={n.href}>
-                  {n.label}
-                </a>
-              ))}
-            </nav>
-            <div className="pk-socials">
-              <a href={SOCIAL.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                <InstagramIcon size={19} />
-              </a>
-              <a href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                <LinkedinIcon size={19} />
-              </a>
-              <a href={SOCIAL.youtube} target="_blank" rel="noopener noreferrer" aria-label="YouTube">
-                <YoutubeIcon size={19} />
-              </a>
-              <a href={SOCIAL.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                <FacebookIcon size={19} />
-              </a>
-            </div>
-          </div>
-          <p className="pk-footer-legal">&copy; {new Date().getFullYear()} Payal Kothari. All rights reserved.</p>
-        </div>
-      </footer>
+      <Footer />
     </>
   );
 }

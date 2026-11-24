@@ -15,15 +15,16 @@ export const SOCIAL = {
 const enquire = (subject: string) =>
   `mailto:${CONTACT.email}?subject=${encodeURIComponent(subject)}`;
 
-/* PENDING: no page exists yet for the programme, Payal's story or bookings,
-   so these point at the old site or an email enquiry until they do. */
+/* PENDING: no page exists yet for the programme or bookings, so those point
+   at an email enquiry until they do. */
 export const LINKS = {
-  story: 'https://www.payalkothari.com/about-us',
+  story: '/about',
   programme: enquire('The 4-Week Nutrition Experience'),
   gutavatar: 'https://www.gutavatar.com/',
   consultation: enquire('Private Consultation Enquiry'),
   speaking: enquire('Speaking Engagement Enquiry'),
-  successStories: 'https://www.payalkothari.com/client-testimonials',
+  successStories: '/testimonials',
+  speakingEvents: '/speaking',
 };
 
 /* PENDING: store search results until the book's product urls are supplied. */
@@ -34,10 +35,13 @@ export const BOOK_STORES = [
   { name: 'Atlantic Books', href: 'https://www.atlanticbooks.com/search?q=the+gut+payal+kothari' },
 ];
 
+/* Section links carry the home path so they also work from /testimonials.
+   Contact stays a bare hash: every page ends in the same footer. */
 export const NAV = [
-  { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Services', href: '#services' },
+  { label: 'Home', href: '/#home' },
+  { label: 'About', href: '/about' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Testimonials', href: '/testimonials' },
   { label: 'Contact', href: '#contact' },
 ];
 
@@ -86,8 +90,7 @@ export const TRUSTED: (Img & { name?: string; role?: string; pos?: string; zoom?
   { src: '/images/trusted/neil-nitin-mukesh.webp', w: 718, h: 488, alt: 'Payal Kothari with Neil Nitin Mukesh', name: 'Neil Nitin Mukesh', role: 'Actor', pos: '50% 50%', zoom: 1.22 },
   { src: '/images/trusted/paul-mckenna.webp', w: 619, h: 1100, alt: 'Payal Kothari with Paul McKenna', name: 'Paul Mckenna', role: 'Hypnotist & Author', pos: '50% 27%' },
   { src: '/images/trusted/mickey-mehta.webp', w: 825, h: 1100, alt: 'Payal Kothari with Mickey Mehta', name: 'Mickey Mehta', role: 'Holistic Health Coach', pos: '50% 15%' },
-  /* PENDING: the copy lists this person as "Name unknown". */
-  { src: '/images/trusted/workshop.webp', w: 1024, h: 768, alt: 'Payal Kothari at a gut reset workshop', pos: '50% 30%' },
+  { src: '/images/trusted/rakesh-jhunjhunwala.webp', w: 1024, h: 768, alt: 'Payal Kothari with Rakesh Jhunjhunwala', name: 'Rakesh Jhunjhunwala', role: 'Investor', pos: '50% 30%' },
 ];
 
 export const RESULTS: Img[] = [

@@ -90,7 +90,7 @@ export const TRUSTED: (Img & { name?: string; role?: string; pos?: string; zoom?
   { src: '/images/trusted/neil-nitin-mukesh.webp', w: 718, h: 488, alt: 'Payal Kothari with Neil Nitin Mukesh', name: 'Neil Nitin Mukesh', role: 'Actor', pos: '50% 50%', zoom: 1.22 },
   { src: '/images/trusted/paul-mckenna.webp', w: 619, h: 1100, alt: 'Payal Kothari with Paul McKenna', name: 'Paul Mckenna', role: 'Hypnotist & Author', pos: '50% 27%' },
   { src: '/images/trusted/mickey-mehta.webp', w: 825, h: 1100, alt: 'Payal Kothari with Mickey Mehta', name: 'Mickey Mehta', role: 'Holistic Health Coach', pos: '50% 15%' },
-  { src: '/images/trusted/rakesh-jhunjhunwala.webp', w: 1024, h: 768, alt: 'Payal Kothari with Rakesh Jhunjhunwala', name: 'Rakesh Jhunjhunwala', role: 'Investor', pos: '50% 30%' },
+  { src: '/images/trusted/kunal-vijaykar.webp', w: 1024, h: 768, alt: 'Payal Kothari with Kunal Vijaykar', name: 'Kunal Vijaykar', role: 'Food Writer & TV Host', pos: '50% 30%' },
 ];
 
 export const RESULTS: Img[] = [

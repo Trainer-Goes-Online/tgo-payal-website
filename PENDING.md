@@ -25,5 +25,5 @@
 - Colours: strict Gut Avatar guideline palette stays.
 - Titles vs certificates and testimonial consent: cleared.
 - GoDaddy access: in hand.
-- Trusted By: the unnamed card is Rakesh Jhunjhunwala.
+- Trusted By: the unnamed card is Kunal Vijaykar (Food Writer & TV Host).
 - Hero image: payal-hero-the-gut.webp (Payal + THE GUT + Amazon Bestseller badge).

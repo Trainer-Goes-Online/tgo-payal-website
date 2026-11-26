@@ -2326,15 +2326,18 @@ html[data-reveal-armed] figure[data-reveal].is-in img {
 
 .pk-ab-philosophy {
   position: relative;
+  max-width: 1080px;
   margin: 0 auto;
   text-align: center;
 }
 
 .pk-ab-philosophy .pk-quote-lead {
+  max-width: 30ch;
   margin: 0 auto 26px;
 }
 
 .pk-ab-philosophy .pk-body {
+  max-width: 46rem;
   margin: 0 auto 28px;
 }
 

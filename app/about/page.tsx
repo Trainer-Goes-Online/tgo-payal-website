@@ -1,12 +1,31 @@
 import type { CSSProperties } from 'react';
 import type { Metadata } from 'next';
 
-import { CountText } from '@/components/CountText';
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
+import PressSection from '@/components/PressSection';
 import { Reveal } from '@/components/Reveal';
-import { ArrowRight, ArrowUpRight } from '@/components/icons';
-import { BOOK_STORES, LINKS, MEDIA_FEATURES, PRESS_LOGOS } from '@/lib/site';
+import {
+  ArrowRight,
+  ArrowUpRight,
+  ArticlesIcon,
+  BookIcon,
+  GradCapIcon,
+  IntestineIcon,
+  LaurelIcon,
+  LotusIcon,
+  MortarIcon,
+  PencilIcon,
+  PeopleIcon,
+  ScaleIcon,
+  SchoolIcon,
+  SproutIcon,
+  StomachIcon,
+  StonesIcon,
+  SunriseIcon,
+  WorkshopIcon,
+} from '@/components/icons';
+import { BOOK_STORES, LINKS } from '@/lib/site';
 
 export const metadata: Metadata = {
   title: 'About Payal Kothari · Gut Health Nutritionist & Metabolic Longevity Advisor',
@@ -26,13 +45,69 @@ const CERTIFICATES = [
   { src: '/images/certificates/acsm-fitness-instructor.webp', w: 394, h: 286, title: 'Health/Fitness Instructor Workshop', by: 'American College of Sports Medicine, 2004' },
 ];
 
-const RECOGNISED = [
-  'Authored 400+ articles for leading newspapers and lifestyle publications.',
-  'Conducted 800+ workshops across India, Dubai, London, the United States and Singapore.',
-  'Educated diverse audiences on gut health, metabolic wellness, weight management, hormonal health and preventive nutrition.',
+const STATS = [
+  ['20+ Years of', 'Experience'],
+  ['Thousands of', 'Lives Impacted'],
+  ['800+ Workshops', 'Worldwide'],
 ];
 
-const STATS = ['20+ Years of Experience', 'Thousands of Lives Impacted', '800+ Workshops Worldwide'];
+const EXPERTISE = [
+  { Icon: IntestineIcon, title: 'Digestive Health', body: 'Improve gut function, reduce discomfort and build a resilient digestive system.' },
+  { Icon: ScaleIcon, title: 'Metabolic Balance', body: 'Support healthy metabolism, blood sugar, insulin response and sustainable weight management.' },
+  { Icon: LotusIcon, title: 'Hormonal Wellbeing', body: 'Address underlying imbalances to restore hormonal harmony and overall wellbeing.' },
+  { Icon: MortarIcon, title: 'Personalised Nutrition', body: 'Tailored, practical nutrition plans that fit your body, life and long-term health goals.' },
+];
+
+const TRUSTED_POINTS = [
+  { Icon: PencilIcon, lead: '400+ articles', rest: 'in leading newspapers and lifestyle publications' },
+  { Icon: PeopleIcon, lead: '800+ workshops', rest: 'across India, Dubai, London, the United States and Singapore' },
+  { Icon: GradCapIcon, lead: 'Nutrition consultancy', rest: 'for premier schools and educational institutions' },
+];
+
+/* Photos cropped from the design reference; each card's label covers the
+   label printed in the crop, so its position is a share of the card. */
+const TRUSTED_PHOTOS = [
+  { src: '/images/about/trusted-business-leaders.webp', w: 382, h: 296, label: 'Business Leaders', cls: 'is-leaders' },
+  { src: '/images/about/trusted-private-clients.webp', w: 302, h: 276, label: 'Private Clients', cls: 'is-private' },
+  { src: '/images/about/trusted-families.webp', w: 450, h: 354, label: 'Families', cls: 'is-families' },
+  { src: '/images/about/trusted-schools.webp', w: 304, h: 279, label: 'Schools & Institutions', cls: 'is-schools' },
+];
+
+const TRUSTED_BAND = [
+  { Icon: WorkshopIcon, title: 'Workshops', body: '800+ across India and globally' },
+  { Icon: ArticlesIcon, title: 'Articles', body: '400+ in leading publications' },
+  { Icon: SchoolIcon, title: 'School Consultancy', body: 'Nutrition guidance for premier education institutions' },
+];
+
+const STORY = [
+  { Icon: StomachIcon, title: 'Early Illness', body: 'At two, I was diagnosed with tuberculosis, and the medication began a lifelong journey with a sensitive gut.' },
+  { Icon: IntestineIcon, title: 'Years of Imbalance', body: 'As I grew, I faced persistent digestive challenges, food intolerances, weight gain, cravings and a constant feel of being out of balance.' },
+  { Icon: LotusIcon, title: 'The Ayurvedic Turning Point', body: 'My mother introduced me to an Ayurvedic practitioner, who brought me back to simple, home-cooked meals, mindful eating and a deeper understanding of the food–body connection.' },
+  { Icon: BookIcon, title: 'Study and Learning', body: 'That experience sparked a lifelong curiosity, leading me to study nutrition, holistic wellness, mind-body practices and metabolic health.' },
+  { Icon: PeopleIcon, title: 'Helping Others', body: 'Today, as a mother of two, I’m passionate about helping others understand their bodies, heal their gut and create lasting, real-world wellness through every stage of life.' },
+];
+
+const PRINCIPLES = [
+  { Icon: SproutIcon, title: 'A Whole-Person Lens', body: 'Address the interconnected systems, from digestion and metabolism to sleep, stress and emotional well-being.' },
+  { Icon: StonesIcon, title: 'Personalised & Integrative', body: 'Blend nutritional science, Ayurveda-inspired practices, functional nutrition and mind-body tools, tailored to you.' },
+  { Icon: SunriseIcon, title: 'Lasting Vitality', body: 'Build metabolic resilience, preserve strength and support healthy ageing, so you can feel your best for decades to come.' },
+];
+
+/* Clockwise from the top, matching the reference wheel. */
+const WHEEL = [
+  { src: '/images/about/approach-metabolism.webp', label: 'Metabolism', pos: 'is-n' },
+  { src: '/images/about/approach-hormones.webp', label: 'Hormones', pos: 'is-ne' },
+  { src: '/images/about/approach-sleep.webp', label: 'Sleep', pos: 'is-se' },
+  { src: '/images/about/approach-energy.webp', label: 'Energy', pos: 'is-s' },
+  { src: '/images/about/approach-mind-body.webp', label: 'Mind-Body', pos: 'is-sw' },
+  { src: '/images/about/approach-longevity.webp', label: 'Longevity', pos: 'is-nw' },
+];
+
+const AVATAR_BENEFITS = [
+  { Icon: IntestineIcon, label: ['Supports', 'Digestion'] },
+  { Icon: SproutIcon, label: ['Nourishes', 'Gut Lining'] },
+  { Icon: ScaleIcon, label: ['Promotes', 'Metabolic', 'Balance'] },
+];
 
 export default function About() {
   return (
@@ -45,25 +120,28 @@ export default function About() {
         <section className="pk-ab-hero">
           <div className="pk-wrap pk-split">
             <div className="pk-split-copy">
-              <p className="pk-eyebrow" data-reveal>
+              <p className="pk-eyebrow pk-ab-hero-eyebrow" data-reveal>
                 Gut Health Nutritionist &middot; Metabolic Longevity Advisor &middot; Author &middot; Founder, GUT AVATAR&trade;
               </p>
               <h1 className="pk-display" data-reveal style={d('.06s')}>
                 Meet Payal Kothari
               </h1>
               <ul className="pk-ab-stats" data-reveal style={d('.12s')}>
-                {STATS.map((s) => (
-                  <li key={s}>
-                    <CountText text={s} />
+                {STATS.map(([a, b]) => (
+                  <li key={a}>
+                    {a}
+                    <br />
+                    {b}
                   </li>
                 ))}
               </ul>
-              <p className="pk-question" data-reveal style={d('.18s')}>
-                &ldquo;True wellness begins in the gut. Longevity begins with how we nourish, understand
-                and care for our bodies.&rdquo;
+              <p className="pk-ab-quote" data-reveal style={d('.18s')}>
+                &ldquo;True wellness begins in the gut. Longevity begins with how we nourish, understand and
+                care for our bodies.&rdquo;
               </p>
+              <span className="pk-ab-rule" aria-hidden />
             </div>
-            <figure className="pk-split-media pk-split-portrait" data-reveal style={d('.08s')}>
+            <figure className="pk-ab-portrait" data-reveal style={d('.08s')}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/images/payal-about.png" alt="Payal Kothari" width={1122} height={1402} />
             </figure>
@@ -72,71 +150,95 @@ export default function About() {
 
         {/* ── THE EXPERTISE ────────────────────────────────────────────── */}
         <section className="pk-section pk-tint">
-          <div className="pk-wrap pk-ab-col">
-            <h2 className="pk-h2" data-reveal>
-              The Expertise Behind The Transformation
-            </h2>
-            <div className="pk-body" data-reveal style={d('.06s')}>
-              <p>
-                Payal Kothari is a certified Clinical Gut Health Nutritionist, Holistic Wellness Coach, NLP
-                Master Practitioner, author of <em>THE GUT</em>, and founder of GUT AVATAR&trade;, a natural
-                wellness brand rooted in traditional Indian wisdom and modern nutritional science.
-              </p>
-              <p>
-                With over two decades of experience, Payal has guided thousands of individuals towards
-                better digestive health, sustainable weight management, metabolic balance and improved
-                quality of life.
-              </p>
-              <p>
-                Her work focuses on identifying the underlying contributors to chronic health concerns,
-                including bloating, acidity, constipation, IBS, reversing fatty liver, insulin resistance,
-                elevated HbA1c, cholesterol, inflammation, thyroid-related weight challenges and hormonal
-                imbalances.
-              </p>
-              <p>
-                Her personalised nutrition programs have also supported individuals navigating fertility
-                challenges, helping them improve their nutritional foundations and overall metabolic health.
-              </p>
-              <p>
-                Her philosophy is simple: Don&rsquo;t just manage symptoms. Understand the body, address the
-                underlying imbalances and build health that lasts.
-              </p>
+          <div className="pk-wrap">
+            <div className="pk-ab-expertise">
+              <div>
+                <h2 className="pk-h2" data-reveal>
+                  The Expertise Behind the Transformation
+                </h2>
+                <p className="pk-ab-lede" data-reveal style={d('.06s')}>
+                  With over two decades of experience, Payal guides individuals towards better digestive health,
+                  metabolic balance, hormonal wellbeing and lasting, whole-body vitality.
+                </p>
+                <span className="pk-ab-rule" aria-hidden />
+              </div>
+              <ul className="pk-ab-cards">
+                {EXPERTISE.map(({ Icon, title, body }, i) => (
+                  <li key={title} className="pk-ab-card" data-reveal style={d(`${0.04 + i * 0.06}s`)}>
+                    <span className="pk-ab-icon">
+                      <Icon size={30} />
+                    </span>
+                    <div>
+                      <h3>{title}</h3>
+                      <p>{body}</p>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </div>
+            <p className="pk-ab-lined-quote" data-reveal>
+              <span aria-hidden />
+              &ldquo;Don&rsquo;t just manage symptoms. Understand the body, address the underlying imbalances and
+              build health that lasts.&rdquo;
+              <span aria-hidden />
+            </p>
           </div>
         </section>
 
         {/* ── TRUSTED BY LEADERS ───────────────────────────────────────── */}
         <section className="pk-section">
-          <div className="pk-wrap pk-ab-col">
-            <h2 className="pk-h2" data-reveal>
-              Trusted By Leaders. Chosen By Families.
-            </h2>
-            <div className="pk-body" data-reveal style={d('.06s')}>
-              <p>
-                Payal has worked with some of India&rsquo;s most prominent business leaders, industrialists,
-                artists and celebrities, including Mr. Anand Mahindra, music composer Pritam Chakraborty and
-                actor Neil Nitin Mukesh, alongside numerous high-profile families who value personalised,
-                discreet and results-oriented nutritional guidance.
-              </p>
-              <p>Her expertise extends beyond private consultations into institutional wellness and preventive health.</p>
-              <p>
-                Having previously worked with Singapore International School, she currently serves as a
-                Consulting Nutritionist at the American School of Bombay, across both campuses, helping shape
-                healthier food environments and nutritional habits for students, educators and families.
-              </p>
-              <p>A recognised voice in nutrition and wellness, Payal has:</p>
+          <div className="pk-wrap">
+            <div className="pk-ab-trusted">
+              <div>
+                <p className="pk-eyebrow is-lined" data-reveal>
+                  About Payal Kothari
+                </p>
+                <h2 className="pk-h2" data-reveal style={d('.04s')}>
+                  Trusted By Leaders. Chosen By Families.
+                </h2>
+                <div className="pk-body" data-reveal style={d('.08s')}>
+                  <p>
+                    Payal works with some of India&rsquo;s most prominent business leaders, industrialists, artists
+                    and celebrities, along with families who value personalised, discreet and results-oriented
+                    nutritional guidance.
+                  </p>
+                  <p>
+                    Her expertise bridges science, education and real-world application to create better health for
+                    individuals, families and institutions alike.
+                  </p>
+                </div>
+                <ul className="pk-ab-points" data-reveal style={d('.12s')}>
+                  {TRUSTED_POINTS.map(({ Icon, lead, rest }) => (
+                    <li key={lead}>
+                      <Icon size={26} />
+                      <p>
+                        <strong>{lead}</strong> {rest}
+                      </p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="pk-ab-collage" data-reveal style={d('.06s')}>
+                {TRUSTED_PHOTOS.map((p) => (
+                  <figure key={p.src} className={p.cls}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={p.src} alt="" width={p.w} height={p.h} loading="lazy" />
+                    <figcaption>{p.label}</figcaption>
+                  </figure>
+                ))}
+              </div>
             </div>
-            <ul className="pk-ab-list" data-reveal style={d('.1s')}>
-              {RECOGNISED.map((r) => (
-                <li key={r}>
-                  <CountText text={r} />
+            <ul className="pk-ab-band" data-reveal>
+              {TRUSTED_BAND.map(({ Icon, title, body }) => (
+                <li key={title}>
+                  <Icon size={42} />
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{body}</p>
+                  </div>
                 </li>
               ))}
             </ul>
-            <p className="pk-ab-note" data-reveal>
-              Her work brings together science, education and real-world application, making better health
-              achievable even within demanding lifestyles.
-            </p>
           </div>
         </section>
 
@@ -163,137 +265,196 @@ export default function About() {
 
         {/* ── MY STORY ─────────────────────────────────────────────────── */}
         <section className="pk-section">
-          <div className="pk-wrap pk-ab-col">
-            <p className="pk-eyebrow" data-reveal>
-              My Story
-            </p>
-            <h2 className="pk-h2" data-reveal style={d('.04s')}>
-              From Struggling With My Gut To Transforming Lives
-            </h2>
-            <p className="pk-question" data-reveal style={d('.08s')}>
-              &ldquo;My greatest teacher wasn&rsquo;t a textbook. It was my own body.&rdquo;
-            </p>
-            <div className="pk-body" data-reveal style={d('.12s')}>
-              <p>My journey into gut health began long before I became a nutritionist.</p>
-              <p>
-                At the age of two, I was diagnosed with tuberculosis. The medication and prolonged treatment
-                saved my life, but the years that followed were marked by digestive difficulties, food
-                intolerances, nutritional challenges and a body that often felt out of balance.
+          <div className="pk-wrap pk-ab-story">
+            <div>
+              <p className="pk-eyebrow" data-reveal>
+                My Story
               </p>
-              <p>
-                As I entered puberty, my struggles grew. I experienced intense cravings for sugar and salty
-                foods, weight gain, emotional lows and a constant sense of frustration with my health.
+              <h2 className="pk-h2" data-reveal style={d('.04s')}>
+                From Struggling With My Gut To Transforming Lives
+              </h2>
+              <p className="pk-ab-quote is-lg" data-reveal style={d('.08s')}>
+                &ldquo;My greatest teacher wasn&rsquo;t a textbook. It was my own body.&rdquo;
               </p>
-              <p>I was eating, but I wasn&rsquo;t truly nourishing my body.</p>
-              <p>
-                The turning point came when my mother introduced me to an Ayurvedic practitioner and brought me
-                back to the foundations of traditional Indian wellness: simple home-cooked meals, mindful
-                eating, digestive care and a deeper understanding of the relationship between food and health.
-              </p>
-              <p>Gradually, my relationship with food, my body and my well-being began to change.</p>
-              <p>
-                That experience sparked a lifelong curiosity about the gut, nutrition and the body&rsquo;s
-                remarkable ability to adapt and recover when given the right support.
-              </p>
-              <p>I went on to study nutrition, holistic wellness, mind-body practices and the science of metabolic health.</p>
-              <p>
-                What began as a personal search for answers became my life&rsquo;s purpose: helping others
-                understand their bodies and reclaim their health.
-              </p>
-              <p>
-                Today, as a mother of two young adults, I understand that wellness must work in the real world:
-                through careers, families, travel, changing hormones, stress and every stage of life.
-              </p>
-              <p>Because health should support the life you want to live, not become another burden within it.</p>
+              <span className="pk-ab-rule" aria-hidden />
+              <figure className="pk-ab-still" data-reveal style={d('.12s')}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/about/story-still-life.webp"
+                  alt=""
+                  width={579}
+                  height={352}
+                  loading="lazy"
+                />
+              </figure>
             </div>
+            <ol className="pk-ab-timeline">
+              {STORY.map(({ Icon, title, body }, i) => (
+                <li key={title} data-reveal style={d(`${0.04 + i * 0.06}s`)}>
+                  <span className="pk-ab-blob">
+                    <Icon size={40} />
+                  </span>
+                  <div>
+                    <h3>
+                      {i + 1}. {title}
+                    </h3>
+                    <p>{body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
           </div>
         </section>
 
         {/* ── MY APPROACH ──────────────────────────────────────────────── */}
         <section className="pk-section pk-tint">
-          <div className="pk-wrap pk-ab-col">
-            <p className="pk-eyebrow" data-reveal>
-              My Approach
-            </p>
-            <h2 className="pk-h2" data-reveal style={d('.04s')}>
-              Where Gut Health Meets Metabolic Longevity
-            </h2>
-            <div className="pk-body" data-reveal style={d('.08s')}>
-              <p>I believe that gut health is an important foundation of overall wellness, but it is never the whole picture.</p>
-              <p>
-                The digestive system, metabolism, blood sugar regulation, hormonal health, sleep, stress and
-                emotional well-being are deeply interconnected.
-              </p>
-              <p>That is why my approach goes beyond calorie counting, restrictive diets and generic meal plans.</p>
-              <p>
-                I combine modern nutritional science, Ayurveda-inspired practices, functional nutrition
-                principles, NLP and bio-individuality to create personalised strategies that consider the whole
-                person.
-              </p>
-              <p>
-                I also explore the relationship between primary foods (relationships, purpose, movement, sleep,
-                emotional well-being and spiritual fulfilment) and secondary foods, the nourishment we put on
-                our plates.
-              </p>
-              <p>My goal is not simply to help people lose weight or improve digestion.</p>
-              <p>
-                It is to help them build metabolic resilience, preserve strength, support healthy ageing and
-                experience greater energy, confidence and vitality through every decade of life.
-              </p>
-              <p>Because living longer is not enough. We must live better.</p>
+          <div className="pk-wrap">
+            <div className="pk-ab-approach">
+              <div>
+                <p className="pk-eyebrow" data-reveal>
+                  My Approach
+                </p>
+                <h2 className="pk-h2" data-reveal style={d('.04s')}>
+                  Where Gut Health Meets Metabolic Longevity
+                </h2>
+                <p className="pk-ab-lede is-sans" data-reveal style={d('.08s')}>
+                  Gut health is a powerful foundation for overall wellness, deeply connected to metabolism, hormones,
+                  sleep, energy, emotional well-being and long-term vitality. My approach brings these pieces together
+                  to create lasting, personalised change, beyond quick fixes or restraint.
+                </p>
+                <p className="pk-eyebrow is-lined pk-ab-principles-h" data-reveal>
+                  My approach is built on three principles
+                </p>
+                <ul className="pk-ab-cards is-soft">
+                  {PRINCIPLES.map(({ Icon, title, body }, i) => (
+                    <li key={title} className="pk-ab-card" data-reveal style={d(`${0.04 + i * 0.06}s`)}>
+                      <span className="pk-ab-icon">
+                        <Icon size={28} />
+                      </span>
+                      <div>
+                        <h3>{title}</h3>
+                        <p className="is-sans">{body}</p>
+                      </div>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="pk-ab-wheel" data-reveal style={d('.1s')}>
+                <svg className="pk-ab-wheel-lines" viewBox="0 0 100 100" aria-hidden>
+                  <circle cx="50" cy="50" r="38" />
+                  {WHEEL.map((_, i) => {
+                    const a = (i * Math.PI) / 3 - Math.PI / 2;
+                    return (
+                      <line
+                        key={i}
+                        x1={50 + 16 * Math.cos(a)}
+                        y1={50 + 16 * Math.sin(a)}
+                        x2={50 + 38 * Math.cos(a)}
+                        y2={50 + 38 * Math.sin(a)}
+                      />
+                    );
+                  })}
+                </svg>
+                <div className="pk-ab-hub">
+                  <span>Gut Health</span>
+                  <IntestineIcon size={44} />
+                </div>
+                {WHEEL.map((w) => (
+                  <figure key={w.label} className={`pk-ab-node ${w.pos}`}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={w.src} alt="" width={168} height={168} loading="lazy" />
+                    <figcaption>{w.label}</figcaption>
+                  </figure>
+                ))}
+              </div>
             </div>
+            <p className="pk-ab-lined-quote" data-reveal>
+              <span aria-hidden />
+              Because living longer is not enough. We must live better.
+              <span aria-hidden />
+            </p>
           </div>
         </section>
 
         {/* ── GUT AVATAR ───────────────────────────────────────────────── */}
-        <section className="pk-section">
+        <section className="pk-section pk-ab-avatar">
+          <span className="pk-ab-sprig" aria-hidden />
           <div className="pk-wrap pk-split">
-            <figure className="pk-split-media" data-reveal>
+            <figure className="pk-ab-photo" data-reveal>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/images/service-gutavatar-jars.png" alt="GUT AVATAR gut wellness products" width={1448} height={1086} loading="lazy" />
+              <img
+                src="/images/service-gutavatar-jars.png"
+                alt="GUT AVATAR gut wellness products"
+                width={1448}
+                height={1086}
+                loading="lazy"
+              />
             </figure>
             <div className="pk-split-copy">
-              <h2 className="pk-h2" data-reveal style={d('.04s')}>
+              <p className="pk-ab-flank" data-reveal>
+                <span aria-hidden />
+                Our Signature Wellness Range
+                <span aria-hidden />
+              </p>
+              <h2 className="pk-h2 pk-ab-h2-lg" data-reveal style={d('.04s')}>
                 GUT AVATAR&trade;: Ancient Wisdom. Modern Guts.
               </h2>
-              <div className="pk-body" data-reveal style={d('.08s')}>
+              <div className="pk-ab-serif-body" data-reveal style={d('.08s')}>
                 <p>
-                  My passion for gut health eventually led me to create GUT AVATAR&trade;, a natural gut
-                  wellness brand inspired by traditional Indian practices and informed by modern nutrition.
+                  My passion for gut health led me to create GUT AVATAR&trade;, a natural gut wellness range inspired
+                  by traditional Indian practices and informed by modern nutrition.
                 </p>
                 <p>
-                  GUT AVATAR was born from one belief: everyday wellness should be simple, intentional and
-                  accessible.
-                </p>
-                <p>
-                  Through thoughtfully developed wellness products, personalised nutrition programs, books and
-                  education, my mission is to make digestive and metabolic wellness a natural part of everyday
+                  Designed to make digestive and metabolic wellness simple, intentional and accessible for everyday
                   life.
                 </p>
               </div>
-              <div data-reveal style={d('.12s')}>
-                <a href={LINKS.gutavatar} className="pk-btn pk-btn-outline" target="_blank" rel="noopener noreferrer">
-                  Explore GutAvatar <ArrowUpRight size={15} />
+              <ul className="pk-ab-benefits" data-reveal style={d('.12s')}>
+                {AVATAR_BENEFITS.map(({ Icon, label }) => (
+                  <li key={label.join(' ')}>
+                    <span className="pk-ab-ring">
+                      <Icon size={28} />
+                    </span>
+                    <span>
+                      {label.map((l, i) => (
+                        <span key={l}>
+                          {i > 0 && <br />}
+                          {l}
+                        </span>
+                      ))}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              <div data-reveal style={d('.16s')}>
+                <a href={LINKS.gutavatar} className="pk-ab-pill-btn" target="_blank" rel="noopener noreferrer">
+                  Explore GUT AVATAR&trade; <ArrowUpRight size={15} />
                 </a>
               </div>
             </div>
           </div>
         </section>
 
+        <PressSection />
+
         {/* ── THE BOOK ─────────────────────────────────────────────────── */}
-        <section className="pk-section pk-tint">
+        <section className="pk-section pk-ab-book-sec">
           <div className="pk-wrap pk-split">
             <div className="pk-split-copy">
               <p className="pk-eyebrow" data-reveal>
                 Author
               </p>
-              <h2 className="pk-h2" data-reveal style={d('.04s')}>
+              <h2 className="pk-display pk-ab-book-h" data-reveal style={d('.04s')}>
                 THE GUT
               </h2>
-              <ul className="pk-ab-stores" data-reveal style={d('.08s')}>
+              <p className="pk-ab-quote" data-reveal style={d('.08s')}>
+                Story of our incredible second brain: how the gut shapes our health, mind and longevity.
+              </p>
+              <span className="pk-ab-rule" aria-hidden />
+              <ul className="pk-ab-stores" data-reveal style={d('.12s')}>
                 {BOOK_STORES.map((b) => (
                   <li key={b.name}>
-                    <a href={b.href} className="pk-arrow-link" target="_blank" rel="noopener noreferrer">
+                    <a href={b.href} className="pk-ab-store" target="_blank" rel="noopener noreferrer">
                       {b.name} <ArrowUpRight size={14} />
                     </a>
                   </li>
@@ -301,35 +462,18 @@ export default function About() {
               </ul>
             </div>
             <figure className="pk-ab-book" data-reveal>
+              <div className="pk-ab-badge">
+                <LaurelIcon size={64} />
+                <span>
+                  National
+                  <br />
+                  Bestseller
+                </span>
+              </div>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/images/the-gut-book.webp" alt="THE GUT by Payal Kothari" loading="lazy" />
+              <span className="pk-ab-plinth" aria-hidden />
             </figure>
-          </div>
-        </section>
-
-        {/* ── PRESS & MEDIA ────────────────────────────────────────────── */}
-        <section className="pk-section">
-          <div className="pk-wrap">
-            <h2 className="pk-h2 is-center pk-tm-h2" data-reveal>
-              As Seen In Leading Publications
-            </h2>
-            <ul className="pk-ab-logos" data-reveal>
-              {PRESS_LOGOS.map((l) => (
-                <li key={l.src}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={l.src} alt={l.alt} width={l.w} height={l.h} loading="lazy" />
-                </li>
-              ))}
-            </ul>
-            <p className="pk-eyebrow is-center pk-ab-sub">Media Features</p>
-            <div className="pk-tm-masonry">
-              {MEDIA_FEATURES.map((m) => (
-                <figure key={m.src} className="pk-tm-photo" data-reveal>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={m.src} alt={m.alt} width={m.w} height={m.h} loading="lazy" decoding="async" />
-                </figure>
-              ))}
-            </div>
           </div>
         </section>
 

@@ -2,6 +2,8 @@ import type { CSSProperties } from 'react';
 
 import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
+import { Marquee, Picture } from '@/components/Media';
+import PressSection from '@/components/PressSection';
 import { Reveal } from '@/components/Reveal';
 import { YouTubeLite } from '@/components/YouTubeLite';
 import {
@@ -19,55 +21,13 @@ import {
   BOOK_STORES,
   FEATURED_VIDEO,
   LINKS,
-  MEDIA_FEATURES,
   PODCASTS,
-  PRESS_LOGOS,
   RESULTS,
   SOCIAL,
   TRUSTED,
-  type Img,
 } from '@/lib/site';
 
 const d = (delay: string) => ({ '--d': delay }) as CSSProperties;
-
-function Picture({ img, className, eager = false }: { img: Img; className?: string; eager?: boolean }) {
-  return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      className={className}
-      src={img.src}
-      alt={img.alt}
-      width={img.w}
-      height={img.h}
-      loading={eager ? 'eager' : 'lazy'}
-      decoding="async"
-    />
-  );
-}
-
-/* A track rendered twice so the loop is seamless; the copy is hidden from AT. */
-function Marquee({
-  items,
-  render,
-  direction = 'rtl',
-  className = '',
-}: {
-  items: Img[];
-  render: (img: Img, key: string, decorative: boolean) => React.ReactNode;
-  direction?: 'ltr' | 'rtl';
-  className?: string;
-}) {
-  return (
-    <div className={`pk-marquee ${direction} ${className}`}>
-      <div className="pk-marquee-track">
-        {items.map((img, i) => render(img, `a${i}`, false))}
-        <div className="pk-marquee-dup" aria-hidden>
-          {items.map((img, i) => render(img, `b${i}`, true))}
-        </div>
-      </div>
-    </div>
-  );
-}
 
 /* Her four credentials, word for word from the bio. */
 const FOCUS = [
@@ -328,55 +288,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* ── PRESS & MEDIA · logos and clippings in one section ─────────── */}
-        <section className="pk-section pk-tint pk-press">
-          <span className="pk-press-leaf is-tl" aria-hidden />
-          <span className="pk-press-leaf is-br" aria-hidden />
-          <div className="pk-wrap">
-            <div className="pk-orn" aria-hidden>
-              <span />
-              <LeafIcon size={18} />
-              <span />
-            </div>
-            <h2 className="pk-h2 is-center pk-press-h" data-reveal>
-              As Seen In Leading Publications
-            </h2>
-            <p className="pk-press-sub" data-reveal style={d('.04s')}>
-              Trusted conversations. Meaningful recognition.
-            </p>
-          </div>
-          <div className="pk-logos" data-reveal style={d('.08s')}>
-            {[PRESS_LOGOS.slice(0, 10), PRESS_LOGOS.slice(10)].map((row, r) => (
-              <Marquee
-                key={r}
-                items={row}
-                direction={r === 0 ? 'rtl' : 'ltr'}
-                render={(img, key, dec) => (
-                  <div className="pk-logo" key={key}>
-                    <Picture img={dec ? { ...img, alt: '' } : img} />
-                  </div>
-                )}
-              />
-            ))}
-          </div>
-          <div className="pk-media" data-reveal>
-            <p className="pk-eyebrow is-center">Media Features</p>
-            <Marquee
-              items={MEDIA_FEATURES}
-              className="pk-marquee-slow"
-              render={(img, key, dec) => (
-                <figure className="pk-clip" key={key}>
-                  <Picture img={dec ? { ...img, alt: '' } : img} />
-                </figure>
-              )}
-            />
-          </div>
-          <div className="pk-orn is-foot" aria-hidden>
-            <span />
-            <LeafIcon size={18} />
-            <span />
-          </div>
-        </section>
+        <PressSection />
 
         {/* ── TRUSTED BY ───────────────────────────────────────────────── */}
         <section className="pk-section">
